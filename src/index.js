@@ -38,6 +38,7 @@ app.get('/status', (req, res) => {
 
 app.use('/auth', routes.auth)
 app.use('/materias', routes.materias)
+app.use('/', routes.user)
 
 database.start()
 
