@@ -1,0 +1,48 @@
+{
+  "name": "january-server",
+  "version": "1.0.0",
+  "description": "Project January - REST Server",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon --ignore /database --ignore /node_modules ./src/index.js",
+    "start": "node ./src/index.js",
+    "alias": "link-module-alias",
+    "alias:clear": "link-module-alias clear"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsalexan/january-server.git"
+  },
+  "author": "dsalexan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsalexan/january-server/issues"
+  },
+  "homepage": "https://github.com/dsalexan/january-server#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "helmet": "^3.21.2",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^1.6.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.17.1",
+    "uuid": "^3.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "link-module-alias": "^1.2.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
+  },
+  "_moduleAliases": {
+    "~": "./src"
+  }
+}

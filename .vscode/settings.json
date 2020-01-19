@@ -1,0 +1,12 @@
+{
+  "eslint.validate": [
+    "javascript",
+    "vue"
+  ],
+  "editor.formatOnSave": false,
+  "vetur.validation.template": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "git.ignoreLimitWarning": true
+}
