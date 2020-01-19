@@ -12,7 +12,7 @@ CREATE TABLE users(
 );
 
 /* senha: janeiro */
-INSERT INTO users VALUES('admin', 'admin', '$2b$10$0fZdIcxiq3jRRCT549Jdzupmu3fW7VVqvEa1DE/2J4ic0.7cmYvGq', 'Admin');
+INSERT INTO users VALUES('admin', 'admin', '$2b$10$0fZdIcxiq3jRRCT549Jdzupmu3fW7VVqvEa1DE/2J4ic0.7cmYvGq', 'Admin',5);
 
 
 DROP TABLE IF EXISTS materias;
