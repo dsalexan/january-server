@@ -45,7 +45,7 @@ module.exports.register = async function({email, password, name}) {
   if (!done) return {success: false}
   return {
     success: true,
-    user: id
+    data: id
   }
 }
 

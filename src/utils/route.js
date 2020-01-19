@@ -32,6 +32,7 @@ module.exports.authMiddleware = function authMiddleware(req, res, next) {
     }
     
     req.user = decoded
+    req.admin = req.user._id === 'admin'
     next()
   })
 }
@@ -39,6 +40,15 @@ module.exports.authMiddleware = function authMiddleware(req, res, next) {
 module.exports.restricted = function restricted(req, res, next) {
   if (req.user === undefined) return res.status(401).send({ success: false, message: 'No token provided.' })
   else if (req.user === null) return res.status(500).send({ success: false, message: 'Failed to authenticate token.' })
+  else {
+    next()
+  }
+}
+
+module.exports.admin = function admin(req, res, next) {
+  if (req.user === undefined) return res.status(401).send({ success: false, message: 'No token provided.' })
+  else if (req.user === null) return res.status(500).send({ success: false, message: 'Failed to authenticate token.' })
+  else if (req.admin === false) return res.status(401).send({ success: false, message: 'Unauthorized resource' })
   else {
     next()
   }
