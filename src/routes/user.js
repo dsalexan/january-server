@@ -41,5 +41,10 @@ module.exports = factory([
     method: 'post',
     route: '/:user/booking',
     controller: booking.add
+  },
+  {
+    method: 'delete',
+    route: '/:user/booking/:materia',
+    controller: booking.remove
   }
 ])

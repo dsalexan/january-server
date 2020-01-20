@@ -4,7 +4,8 @@ module.exports.request = function request(controller) {
   return async (req, res, next) => {
     const data = {
       ...(req.query || {}),
-      ...(req.body || {})
+      ...(req.body || {}),
+      ...(req.params || {})
     }
 
     const user = req.user || null

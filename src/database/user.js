@@ -33,28 +33,28 @@ async function authenticateById(id, password) {
 
 async function byId(id) {
   const user = (await query('SELECT * FROM users WHERE _id = $1', [id]))[0]
-  delete user.password
+  if (user) delete user.password
   return user
 }
 
 async function byEmail(email) {
   const user = (await query('SELECT * FROM users WHERE email = $1', [email]))[0]
-  delete user.password
+  if (user) delete user.password
   return user
 }
 
 // INSERT
 
-async function insert(id, email, password, name) {
-  return await query('INSERT INTO users (_id, email, password, name) \
-    VALUES ($1, $2, $3, $4)', [id, email, await hashPassword(password), name])
+async function insert(id, email, password, name, turma) {
+  return await query('INSERT INTO users (_id, email, password, name, turma) \
+    VALUES ($1, $2, $3, $4, $5)', [id, email, await hashPassword(password), name, turma])
 }
 
 
 // UPDATE
 
-async function update(id, {email, password, name}) {
-  const data = {email, password, name} // too keep other data from being injected
+async function update(id, {email, password, name, turma}) {
+  const data = {email, password, name, turma} // too keep other data from being injected
 
   const fields = await Promise.all(Object.keys(data).filter(k => data[k] !== undefined && data[k] !== null).map(async (k) => {
     if (k === 'password') {

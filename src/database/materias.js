@@ -14,16 +14,16 @@ async function byCore(core) {
 
 // INSERT
 
-async function insert(id, core, name, weekday, starttime, endtime, tags = [], turmas = []) {
-  return await query('INSERT INTO materias (_id, core, name, weekday, starttime, endtime, tags, turmas) \
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)', [id, core, name, weekday, starttime, endtime, tags, turmas])
+async function insert(id, core, name, weekday, starttime, endtime, maximum = null, tags = [], turmas = []) {
+  return await query('INSERT INTO materias (_id, core, name, weekday, starttime, endtime, maximum, tags, turmas) \
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [id, core, name, weekday, starttime, endtime, maximum, tags, turmas])
 }
 
 
 // UPDATE
 
-async function update(id, {core, name, weekday, starttime, endtime, tags = [], turmas = []}) {
-  const data = {core, name, weekday, starttime, endtime, tags, turmas} // too keep other data from being injected
+async function update(id, {core, name, weekday, starttime, endtime, maximum, tags = [], turmas = []}) {
+  const data = {core, name, weekday, starttime, endtime, maximum, tags, turmas} // too keep other data from being injected
 
   const fields = await Promise.all(Object.keys(data).filter(k => data[k] !== undefined && data[k] !== null))
   const setFields = Object.keys(data).filter(k => data[k]  !== undefined && data[k] !== null).map((k, i) => `${k} = $${i + 2}`).join(',')

@@ -1,7 +1,3 @@
-DROP DATABASE IF EXISTS january;
-CREATE DATABASE january;
-USE january;
-
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -30,19 +26,19 @@ CREATE TABLE materias (
   turmas INTEGER[] DEFAULT '{}'
 );
 
-INSERT INTO materias VALUES('materia#teste',
+INSERT INTO materias VALUES('materia.teste 2',
                             'Núcleo Planck de Artes',
-                            'Teste',
-                            ARRAY[2],
-                            ARRAY['12:00'::TIME],
-                            ARRAY['13:30'::TIME],
+                            'Teste 2',
+                            ARRAY[2, 5],
+                            ARRAY['12:00'::TIME, '19:30'::TIME],
+                            ARRAY['13:30'::TIME, '21:00'::TIME],
                             30,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 
-
+DROP TABLE IF EXISTS booking;
 CREATE TABLE booking (
-  "user" VARCHAR(100) NOT NULL,
+  student VARCHAR(100) NOT NULL,
   materia VARCHAR(100) NOT NULL,
   status INTEGER NOT NULL DEFAULT 0,
 
