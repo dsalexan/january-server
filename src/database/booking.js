@@ -1,3 +1,4 @@
+const _ = require('lodash')
 const { query } = require('./pg')
 
 function all() {
@@ -34,8 +35,8 @@ async function insert(user, materia, status = 0, timestamp = null) {
 async function update(user, materia, {status = 0, timestamp = null}) {
   const data = {status, timestamp} // too keep other data from being injected
 
-  const fields = await Promise.all(Object.keys(data).filter(k => data[k] !== undefined && data[k] !== null))
-  const setFields = Object.keys(data).filter(k => data[k]  !== undefined && data[k] !== null).map((k, i) => `${k} = $${i + 3}`).join(',')
+  const fields = Object.keys(data).filter(k => data[k] !== undefined).map(k => data[k])
+  const setFields = Object.keys(data).filter(k => data[k]  !== undefined).map((k, i) => `${k} = $${i + 3}`).join(',')
 
   return await query(`UPDATE booking SET ${setFields} WHERE student = $1 AND materia = $2`, [user, materia, ...fields])
 }
