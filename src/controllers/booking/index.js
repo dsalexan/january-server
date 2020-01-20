@@ -23,7 +23,7 @@ module.exports.add = async function({user, materia, status = 0, timestamp = null
   const m = await materias.byId(materia)
   const u = await userDB.byId(id)
 
-  if (!(m.turmas.includes(u.turma))) return {
+  if (m.turmas !== null && !(m.turmas.includes(u.turma))) return {
     status: 401,
     data: {
       success: false,
@@ -32,6 +32,8 @@ module.exports.add = async function({user, materia, status = 0, timestamp = null
   }
 
   const doExists = await booking.exists(id, materia)
+
+  if (status === 1) timestamp = new Date()
 
   let done = false
   if (!doExists) {

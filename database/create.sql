@@ -44,3 +44,18 @@ CREATE TABLE booking (
 
   timestamp TIMESTAMPTZ DEFAULT NULL
 );
+
+CREATE OR REPLACE VIEW view_booking AS
+WITH stack AS (
+ SELECT *,
+        ROW_NUMBER() OVER(PARTITION BY  materia ORDER BY timestamp ASC) AS position
+   FROM booking)
+  SELECT s.*
+  FROM stack s
+  WHERE status = 1
+UNION
+  SELECT *, null as position
+  FROM booking
+  WHERE status != 1;
+
+SELECT * FROM view_booking;
