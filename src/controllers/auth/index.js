@@ -39,9 +39,9 @@ module.exports.signin = async function({email, password}) {
   }
 }
 
-module.exports.register = async function({email, password, name}) {
+module.exports.register = async function({email, password, name, turma}) {
   const id  = uuid()
-  const done = await user.insert(id, email, password, name)
+  const done = await user.insert(id, email, password, name, turma)
 
   if (!done) return {success: false}
   return {
@@ -50,10 +50,10 @@ module.exports.register = async function({email, password, name}) {
   }
 }
 
-module.exports.change = async function({email, name, id}, u) {
+module.exports.change = async function({email, name, turma, id}, u) {
   const _id = id === 'me' ? u._id : id
   try {
-    const done = await user.update(_id, {email, name})
+    const done = await user.update(_id, {email, name, turma})
 
     if (!done) return {success: false, error: 'Unknown Error'}
 

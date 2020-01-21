@@ -154,6 +154,8 @@ INSERT INTO materias VALUES('14',
                             28,
                             ARRAY['custo extra'],
                             null);
+
+
 INSERT INTO materias VALUES('15',
                             'Núcleo Planck de Esportes',
                             'Basquete',
@@ -162,7 +164,7 @@ INSERT INTO materias VALUES('15',
                             ARRAY['15:20'::TIME, '17:40'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('16',
                             'Núcleo Planck de Esportes',
                             'Volei',
@@ -171,7 +173,7 @@ INSERT INTO materias VALUES('16',
                             ARRAY['16:30'::TIME, '18:50'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('17',
                             'Núcleo Planck de Esportes',
                             'Futebol Masc.',
@@ -180,7 +182,7 @@ INSERT INTO materias VALUES('17',
                             ARRAY['17:40'::TIME, '18:50'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 
 INSERT INTO materias VALUES('18',
                             'Núcleo Planck de Esportes',
@@ -190,7 +192,7 @@ INSERT INTO materias VALUES('18',
                             ARRAY['18:50'::TIME, '17:40'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('19',
                             'Núcleo Planck de Esportes',
                             'Futebol Fem.',
@@ -199,7 +201,7 @@ INSERT INTO materias VALUES('19',
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['5,6, 7']);
+                            ARRAY[5,6, 7]);
 
 INSERT INTO materias VALUES('20',
                             'Núcleo Planck de Esportes',
@@ -209,7 +211,7 @@ INSERT INTO materias VALUES('20',
                             ARRAY['16:30'::TIME, '17:40'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['5, 6, 7']);
+                            ARRAY[5, 6, 7]);
 INSERT INTO materias VALUES('21',
                             'Núcleo Planck de Esportes',
                             'Handball',
@@ -218,7 +220,7 @@ INSERT INTO materias VALUES('21',
                             ARRAY['18:50'::TIME, '15:20'::TIME],
                             30,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 
 INSERT INTO materias VALUES('22',
                             'Núcleo Planck de Esportes',
@@ -228,7 +230,7 @@ INSERT INTO materias VALUES('22',
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             24,
                             ARRAY['custo extra'],
-                            ARRAY['5, 6, 7']);
+                            ARRAY[5, 6, 7]);
 
 INSERT INTO materias VALUES('23',
                             'Núcleo Planck de Esportes',
@@ -238,7 +240,7 @@ INSERT INTO materias VALUES('23',
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['5, 6, 7']);
+                            ARRAY[5, 6, 7]);
 
 INSERT INTO materias VALUES('24',
                             'Núcleo Planck de Esportes',
@@ -248,7 +250,7 @@ INSERT INTO materias VALUES('24',
                             ARRAY['16:30'::TIME, '16:30'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('25',
                             'Núcleo Planck de Esportes',
                             'Tenis de Mesa',
@@ -257,7 +259,7 @@ INSERT INTO materias VALUES('25',
                             ARRAY['18:50'::TIME, '16:30'::TIME],
                             16,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('26',
                             'Núcleo Planck de Esportes',
                             'Tenis de Mesa',
@@ -266,7 +268,7 @@ INSERT INTO materias VALUES('26',
                             ARRAY['17:40'::TIME, '15:20'::TIME],
                             16,
                             ARRAY['custo extra'],
-                            ARRAY['5,6,7']);
+                            ARRAY[5,6,7]);
 INSERT INTO materias VALUES('27',
                             'Núcleo Planck de Esportes',
                             'Yoga',
@@ -275,7 +277,7 @@ INSERT INTO materias VALUES('27',
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             24,
                             ARRAY['custo extra'],
-                            ARRAY['5,6,7']);
+                            ARRAY[5,6,7]);
 
 INSERT INTO materias VALUES('28',
                             'Núcleo Planck de Esportes',
@@ -285,7 +287,9 @@ INSERT INTO materias VALUES('28',
                             ARRAY['16:30'::TIME, '16:30'::TIME],
                             24,
                             ARRAY['custo extra'],
-                            ARRAY['8, 9, 10, 11']);
+                            ARRAY[8, 9, 10, 11]);
+
+
 INSERT INTO materias VALUES('29',
                             'Núcleo Planck de Esportes',
                             'Xadrez A',
@@ -293,9 +297,8 @@ INSERT INTO materias VALUES('29',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
+                            ARRAY[]::VARCHAR(20)[],
                             null);
-
 INSERT INTO materias VALUES('30',
                             'Núcleo Planck de Esportes',
                             'Xadrez B',
@@ -303,7 +306,7 @@ INSERT INTO materias VALUES('30',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
-                            null,
+                            ARRAY[]::VARCHAR(20)[],
                             null);
 
 INSERT INTO materias VALUES('31',
@@ -314,7 +317,7 @@ INSERT INTO materias VALUES('31',
                             ARRAY['18:50'::TIME],
                             15,
                             ARRAY['custo extra'],
-                            ARRAY['9, 10, 11']);
+                            ARRAY[9, 10, 11]);
 INSERT INTO materias VALUES('32',
                             'Núcleo Planck de Tecnologia',
                             'Startup',
@@ -332,7 +335,7 @@ INSERT INTO materias VALUES('33',
                             ARRAY['16:30'::TIME],
                             15,
                             ARRAY['custo extra'],
-                            ARRAY['5, 6']);
+                            ARRAY[5, 6]);
 
 INSERT INTO materias VALUES('34',
                             'Núcleo Planck de Tecnologia',
@@ -342,7 +345,7 @@ INSERT INTO materias VALUES('34',
                             ARRAY['18:50'::TIME],
                             15,
                             ARRAY['custo extra'],
-                            ARRAY['7, 8']);
+                            ARRAY[7, 8]);
 
 INSERT INTO materias VALUES('35',
                             'Núcleo Planck de Tecnologia',
@@ -351,8 +354,8 @@ INSERT INTO materias VALUES('35',
                             ARRAY['14:20'::TIME],
                             ARRAY['15:20'::TIME],
                             100,
-                            null,
-                            ARRAY['5, 6, 7, 8']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[5, 6, 7, 8]);
 
 INSERT INTO materias VALUES('36',
                             'Núcleo Planck de Tecnologia',
@@ -361,8 +364,8 @@ INSERT INTO materias VALUES('36',
                             ARRAY['15:30'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('37',
                             'Núcleo Planck de Tecnologia',
@@ -371,8 +374,8 @@ INSERT INTO materias VALUES('37',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
-                            ARRAY['5,6,7']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[5,6,7]);
 
 INSERT INTO materias VALUES('38',
                             'Núcleo Planck de Tecnologia',
@@ -381,8 +384,8 @@ INSERT INTO materias VALUES('38',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('39',
                             'Núcleo Planck de Tecnologia',
@@ -391,8 +394,8 @@ INSERT INTO materias VALUES('39',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
-                            ARRAY['8, 9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[8, 9,10,11]);
 
 INSERT INTO materias VALUES('41',
                             'Planck Internacional',
@@ -401,8 +404,8 @@ INSERT INTO materias VALUES('41',
                             ARRAY['14:20'::TIME],
                             ARRAY['17:40'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('42',
                             'Planck Internacional',
@@ -411,8 +414,8 @@ INSERT INTO materias VALUES('42',
                             ARRAY['14:20'::TIME],
                             ARRAY['17:40'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('43',
                             'Planck Internacional',
@@ -421,8 +424,8 @@ INSERT INTO materias VALUES('43',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
-                            null,
-                            ARRAY['8, 9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[8, 9,10,11]);
 
 INSERT INTO materias VALUES('44',
                             'Planck Internacional',
@@ -431,8 +434,8 @@ INSERT INTO materias VALUES('44',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 INSERT INTO materias VALUES('45',
                             'Planck Internacional',
                             'Espanhol 1',
@@ -440,8 +443,8 @@ INSERT INTO materias VALUES('45',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('46',
                             'Planck Internacional',
@@ -450,8 +453,8 @@ INSERT INTO materias VALUES('46',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('47',
                             'Planck Internacional',
@@ -460,8 +463,8 @@ INSERT INTO materias VALUES('47',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 INSERT INTO materias VALUES('48',
                             'Planck Internacional',
                             'Francês 2',
@@ -469,8 +472,8 @@ INSERT INTO materias VALUES('48',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 INSERT INTO materias VALUES('49',
                             'Planck Internacional',
                             'Francês 1',
@@ -478,8 +481,8 @@ INSERT INTO materias VALUES('49',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 INSERT INTO materias VALUES('50',
                             'Planck Internacional',
                             'Francês 1',
@@ -487,8 +490,8 @@ INSERT INTO materias VALUES('50',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('51',
                             'Planck Internacional',
@@ -497,8 +500,8 @@ INSERT INTO materias VALUES('51',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('52',
                             'Planck Internacional',
@@ -508,7 +511,7 @@ INSERT INTO materias VALUES('52',
                             ARRAY['16:30'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['5,6,7,8']);
+                            ARRAY[5,6,7,8]);
 INSERT INTO materias VALUES('53',
                             'Planck Internacional',
                             'Espanhol 1',
@@ -517,7 +520,7 @@ INSERT INTO materias VALUES('53',
                             ARRAY['18:50'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['5,6,7,8']);
+                            ARRAY[5,6,7,8]);
 INSERT INTO materias VALUES('54',
                             'Planck Internacional',
                             'Espanhol 1',
@@ -526,7 +529,7 @@ INSERT INTO materias VALUES('54',
                             ARRAY['18:50'::TIME],
                             20,
                             ARRAY['custo extra'],
-                            ARRAY['5,6,7,8']);
+                            ARRAY[5,6,7,8]);
 
 INSERT INTO materias VALUES('55',
                             'Programa Planck de Preparação Olímpica',
@@ -535,8 +538,8 @@ INSERT INTO materias VALUES('55',
                             ARRAY['14:20'::TIME],
                             ARRAY['15:20'::TIME],
                             100,
-                            null,
-                            ARRAY['8, 9']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[8, 9]);
 
 INSERT INTO materias VALUES('56',
                             'Programa Planck de Preparação Olímpica',
@@ -545,8 +548,8 @@ INSERT INTO materias VALUES('56',
                             ARRAY['15:30'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
-                            ARRAY['10, 11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[10, 11]);
 
 INSERT INTO materias VALUES('57',
                             'Programa Planck de Preparação Olímpica',
@@ -555,8 +558,8 @@ INSERT INTO materias VALUES('57',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
-                            ARRAY['5, 6']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[5, 6]);
 
 INSERT INTO materias VALUES('58',
                             'Programa Planck de Preparação Olímpica',
@@ -565,8 +568,8 @@ INSERT INTO materias VALUES('58',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
-                            null,
-                            ARRAY['5, 6']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[5, 6]);
 INSERT INTO materias VALUES('59',
                             'Programa Planck de Preparação Olímpica',
                             'Matemática',
@@ -574,8 +577,8 @@ INSERT INTO materias VALUES('59',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
-                            null,
-                            ARRAY['7, 8']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[7, 8]);
 INSERT INTO materias VALUES('60',
                             'Programa Planck de Preparação Olímpica',
                             'Matemática',
@@ -583,8 +586,8 @@ INSERT INTO materias VALUES('60',
                             ARRAY['15:30'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 INSERT INTO materias VALUES('61',
                             'Programa Planck de Preparação Olímpica',
                             'Filosofia',
@@ -592,8 +595,8 @@ INSERT INTO materias VALUES('61',
                             ARRAY['14:20'::TIME],
                             ARRAY['15:20'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);
 INSERT INTO materias VALUES('62',
                             'Programa Planck de Preparação Olímpica',
                             'Bioquímica',
@@ -601,5 +604,5 @@ INSERT INTO materias VALUES('62',
                             ARRAY['17:50'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
-                            null,
-                            ARRAY['9,10,11']);
+                            ARRAY[]::VARCHAR(20)[],
+                            ARRAY[9,10,11]);

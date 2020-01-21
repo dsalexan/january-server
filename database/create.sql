@@ -27,7 +27,7 @@ CREATE TABLE materias (
 
   tags VARCHAR(20)[] NOT NULL DEFAULT '{}',
 
-  turmas INTEGER[] DEFAULT '{}'
+  turmas INTEGER[] DEFAULT NULL
 );
 
 CREATE TABLE booking (
@@ -38,7 +38,6 @@ CREATE TABLE booking (
   timestamp TIMESTAMPTZ DEFAULT NULL
 );
 
-DROP VIEW view_booking;
 CREATE OR REPLACE VIEW view_booking AS
 SELECT B.*, M.weekday, M.starttime, M.endtime
 FROM (
