@@ -1,4 +1,9 @@
+DROP VIEW IF EXISTS view_booking;
+
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS materias;
+DROP TABLE IF EXISTS booking;
+
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
   email VARCHAR(200) NOT NULL,
@@ -11,7 +16,6 @@ CREATE TABLE users(
 INSERT INTO users VALUES('admin', 'admin', '$2b$10$0fZdIcxiq3jRRCT549Jdzupmu3fW7VVqvEa1DE/2J4ic0.7cmYvGq', 'Admin',5);
 
 
-DROP TABLE IF EXISTS materias;
 CREATE TABLE materias (
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
   core VARCHAR(200) NOT NULL,
@@ -26,17 +30,6 @@ CREATE TABLE materias (
   turmas INTEGER[] DEFAULT '{}'
 );
 
-INSERT INTO materias VALUES('materia.teste 2',
-                            'Núcleo Planck de Artes',
-                            'Teste 2',
-                            ARRAY[2, 5],
-                            ARRAY['12:00'::TIME, '19:30'::TIME],
-                            ARRAY['13:30'::TIME, '21:00'::TIME],
-                            30,
-                            ARRAY['custo extra'],
-                            ARRAY[8, 9, 10, 11]);
-
-DROP TABLE IF EXISTS booking;
 CREATE TABLE booking (
   student VARCHAR(100) NOT NULL,
   materia VARCHAR(100) NOT NULL,
@@ -45,17 +38,20 @@ CREATE TABLE booking (
   timestamp TIMESTAMPTZ DEFAULT NULL
 );
 
+DROP VIEW view_booking;
 CREATE OR REPLACE VIEW view_booking AS
-WITH stack AS (
- SELECT *,
-        ROW_NUMBER() OVER(PARTITION BY  materia ORDER BY timestamp ASC) AS position
-   FROM booking)
-  SELECT s.*
-  FROM stack s
-  WHERE status = 1
-UNION
-  SELECT *, null as position
-  FROM booking
-  WHERE status != 1;
-
-SELECT * FROM view_booking;
+SELECT B.*, M.weekday, M.starttime, M.endtime
+FROM (
+  WITH stack AS (
+    SELECT *, ROW_NUMBER() OVER(PARTITION BY  materia ORDER BY timestamp ASC) AS position
+    FROM booking
+  )
+    SELECT s.*
+    FROM stack s
+    WHERE status = 1
+  UNION
+    SELECT *, null as position
+    FROM booking
+    WHERE status != 1
+) AS B LEFT JOIN
+materias M ON B.materia = M._id;

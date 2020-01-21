@@ -48,7 +48,7 @@ INSERT INTO materias VALUES('4',
                             ARRAY['custo extra'],
                              ARRAY[5, 6, 7]);
 
-INSERT INTO materias VALUES('4',
+INSERT INTO materias VALUES('4.5',
                             'Núcleo Planck de Artes',
                             'Mídias Sociais',
                             ARRAY[6],
