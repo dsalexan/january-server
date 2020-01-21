@@ -12,6 +12,10 @@ async function byCore(core) {
   return (await query('SELECT * FROM users WHERE core = $1', [core]))
 }
 
+async function bookingsById(id) {
+  return await query('SELECT * FROM booking WHERE materia = $1', [id])
+}
+
 // INSERT
 
 async function insert(id, core, name, weekday, starttime, endtime, maximum = null, tags = [], turmas = []) {
@@ -41,6 +45,7 @@ module.exports = {
   all,
   byId,
   byCore,
+  bookingsById,
   insert,
   update,
   remove

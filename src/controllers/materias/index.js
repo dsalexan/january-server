@@ -5,6 +5,12 @@ const {materias} = require('~/database')
 module.exports.listAll = async function listAll(_, u) {
   const result = await materias.all()
 
+  // TODO: Add vacancy
+  await Promise.all(result.map(async materia => {
+    const bookings = await materias.bookingsById(materia._id)    
+    materia.bookings = bookings
+  }))
+
   if (!result) return {success: false}
 
   return {

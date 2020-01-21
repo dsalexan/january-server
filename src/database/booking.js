@@ -2,24 +2,24 @@ const _ = require('lodash')
 const { query } = require('./pg')
 
 function all() {
-  return query('SELECT * FROM booking')  
+  return query('SELECT * FROM view_booking')  
 }
 
 async function exists(user, materia) {
-  return (await query('SELECT * FROM booking WHERE student = $1 AND materia = $2', [user, materia]))[0] !== undefined
+  return (await query('SELECT * FROM view_booking WHERE student = $1 AND materia = $2', [user, materia]))[0] !== undefined
 }
 
 
 async function byUser(id) {
-  return await query('SELECT * FROM booking WHERE student = $1', [id])
+  return await query('SELECT * FROM view_booking WHERE student = $1', [id])
 }
 
 async function byMateria(id) {
-  return await query('SELECT * FROM booking WHERE materia = $1', [id])
+  return await query('SELECT * FROM view_booking WHERE materia = $1', [id])
 }
 
 async function byStatus(status) {
-  return await query('SELECT * FROM booking WHERE status = $1', [status])
+  return await query('SELECT * FROM view_booking WHERE status = $1', [status])
 }
 
 // INSERT
