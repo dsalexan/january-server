@@ -1,13 +1,3 @@
-INSERT INTO materias VALUES('materia.teste 2',
-                            'Núcleo Planck de Artes',
-                            'Teste 2',
-                            ARRAY[2, 5],
-                            ARRAY['12:00'::TIME, '19:30'::TIME],
-                            ARRAY['13:30'::TIME, '21:00'::TIME],
-                            30,
-                            ARRAY['custo extra'],
-                            ARRAY[8, 9, 10, 11]);
-
 INSERT INTO materias VALUES('1',
                             'Núcleo Planck de Artes',
                             'Escultura',
