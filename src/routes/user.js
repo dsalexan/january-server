@@ -7,13 +7,19 @@ module.exports = factory([
   {
     method: 'get',
     route: '/',
-    controller: booking.listAll,
+    controller: () => {},
     restricted: true
   },
   {
     method: 'post',
     route: '/',
-    controller: booking.insert,
+    controller: () => {},
+    admin: true
+  },
+  {
+    method: 'get',
+    route: '/booking',
+    controller: booking.listAll,
     admin: true
   },
   {
@@ -46,5 +52,10 @@ module.exports = factory([
     method: 'delete',
     route: '/:user/booking/:materia',
     controller: booking.remove
-  }
+  },
+  {
+    method: 'get',
+    route: '/:user/pages',
+    controller: booking.pages
+  },
 ])

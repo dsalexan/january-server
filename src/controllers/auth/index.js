@@ -10,6 +10,25 @@ module.exports.me = async function me(_, u) {
 
   if (!result) return {success: false}
 
+  const isAdmin = id === 'admin'
+
+  result.pages = [
+    {
+      route: 'home',
+    },
+    {
+      route: 'reservas',
+    },
+    {
+      route: 'painel',
+      icon: 'view-dashboard',
+      name: 'Painel',
+      label: 'Painel Administrativo',
+      admin: true
+    }
+  ].filter(page => !!page.admin === !!isAdmin)
+  result.home = isAdmin ? '/painel' : '/'
+
   return {
     success: true,
     data: result
@@ -30,11 +49,12 @@ module.exports.signin = async function({email, password}) {
   const token = jwt.sign({_id: authed._id}, process.env.SECRET, {
     expiresIn: 86400 // expires in 24 hours
   })
+  
 
   return {
     success: true,
     data: {
-      token
+      token,
     }
   }
 }

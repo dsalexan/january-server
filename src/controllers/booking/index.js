@@ -4,6 +4,17 @@ const {booking} = require('~/database')
 const {materias} = require('~/database')
 const userDB = require('~/database').user
 
+module.exports.listAll = async function(_, u) {
+  const result = await booking.all()
+
+  if (!result) return {success: false}
+
+  return {
+    success: true,
+    data: result
+  }
+}
+
 module.exports.user = async function({user}, u) {
   const id = user === 'me' ? u._id : user
 

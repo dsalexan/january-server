@@ -49,7 +49,7 @@ module.exports.restricted = function restricted(req, res, next) {
 module.exports.admin = function admin(req, res, next) {
   if (req.user === undefined) return res.status(401).send({ success: false, message: 'No token provided.' })
   else if (req.user === null) return res.status(500).send({ success: false, message: 'Failed to authenticate token.' })
-  else if (req.admin === false) return res.status(401).send({ success: false, message: 'Unauthorized resource' })
+  else if (!req.admin) return res.status(401).send({ success: false, message: 'Unauthorized resource' })
   else {
     next()
   }
