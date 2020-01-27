@@ -24,6 +24,12 @@ module.exports = factory([
   },
   {
     method: 'get',
+    route: '/booking/export',
+    controller: booking.export,
+    admin: true
+  },
+  {
+    method: 'get',
     route: '/:id',
     controller: auth.me,
     restricted: true

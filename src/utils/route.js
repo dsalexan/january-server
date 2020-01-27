@@ -12,7 +12,18 @@ module.exports.request = function request(controller) {
     
     const response = await controller(data, user)
     
-    if ((response || {}).status) {
+    if ((response || {}).contentType) {
+      res.writeHead(response.status || 200, {
+        'Content-Type': response.contentType,
+        'Content-Disposition': response.contentDisposition || ''
+      })
+
+      if ((response || {}).end) {
+        res.end(response.end, 'binary')
+      } else {
+        res.send(response.data)
+      }
+    } else if ((response || {}).status) {
       res.status(response.status).send(response.data)
     } else {
       res.status(200).send(response)
@@ -23,7 +34,7 @@ module.exports.request = function request(controller) {
 }
 
 module.exports.authMiddleware = function authMiddleware(req, res, next) {
-  var token = req.headers['x-access-token']
+  var token = req.headers['x-access-token'] || req.query['x-access-token']
   if (!token) return next()
   
   jwt.verify(token, process.env.SECRET, function(err, decoded) {

@@ -1,7 +1,10 @@
 const uuid = require('uuid/v4')
+const moment = require('moment-timezone')
+
 
 const {booking} = require('~/database')
 const {materias} = require('~/database')
+
 const userDB = require('~/database').user
 
 module.exports.listAll = async function(_, u) {
@@ -25,6 +28,45 @@ module.exports.user = async function({user}, u) {
   return {
     success: true,
     data: result
+  }
+}
+
+module.exports.export = async function() {
+  const result = await booking.all(1)
+
+  if (!result) return {success: false}
+
+  const data = [
+    ['ID Estudante', 'Estudante', 'Núcleo', 'Atividade', 'Posição na Fila', 'Horário Inscrição'],
+    ...result.map((b) => {
+      b._dPosition = `${b.position} de ${b.maximum}`
+      b._dSubscriptionTime = moment
+        .utc(b.timestamp)
+        .tz('America/Sao_Paulo')
+        .format('hh:mm')
+
+      b._dSubscriptionTimeCalendar = moment
+        .utc(b.timestamp)
+        .tz('America/Sao_Paulo')
+        .fromNow()
+
+      return [b.student, b.name_student, b.core, b.name_materia, b._dPosition, b._dSubscriptionTime]
+    })
+  ]
+
+  let csv = ''
+  data.forEach(function(infoArray, index){
+    var dataString = infoArray.join(',')
+    csv += index < data.length ? dataString+ '\n' : dataString
+  }) 
+
+  const name = moment.tz('America/Sao_Paulo').format('DDMMYYYY_hhmmss')
+
+  return {
+    status: 200,
+    contentType: 'text/csv',
+    contentDisposition: `attachment; filename=painel_export_${name}.csv`,
+    end: csv
   }
 }
 
