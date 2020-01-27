@@ -1,13 +1,19 @@
 const _ = require('lodash')
 const { query } = require('./pg')
 
-function all() {
-  return query(`
+function all(status) {
+  let q = `
     SELECT U.name AS name_student, B.student, M.core, M.name AS name_materia, B.materia, B.position, M.maximum, B.timestamp
     FROM view_booking B
     LEFT JOIN users U ON B.student = U._id
     LEFT JOIN materias M ON B.materia = M._id
-  `)  
+  `
+
+  if (status !== undefined) {
+    q += ' WHERE B.status = $1'
+  }
+
+  return query(q, [status])
 }
 
 async function exists(user, materia) {

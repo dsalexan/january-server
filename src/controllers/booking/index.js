@@ -5,7 +5,7 @@ const {materias} = require('~/database')
 const userDB = require('~/database').user
 
 module.exports.listAll = async function(_, u) {
-  const result = await booking.all()
+  const result = await booking.all(1)
 
   if (!result) return {success: false}
 
