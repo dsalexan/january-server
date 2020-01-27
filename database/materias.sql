@@ -5,6 +5,7 @@ INSERT INTO materias VALUES('1',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             20,
+                            8,
                             ARRAY['custo extra'],
                             null); 
 
@@ -15,6 +16,7 @@ INSERT INTO materias VALUES('2',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             20,
+                            8,
                             ARRAY['custo extra'],
                             null);
 
@@ -25,6 +27,7 @@ INSERT INTO materias VALUES('3',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             30,
+                            8,
                             ARRAY['custo extra'],
                             null);
 
@@ -35,6 +38,7 @@ INSERT INTO materias VALUES('4',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             20,
+                            6,
                             ARRAY['custo extra'],
                              ARRAY[5, 6, 7]);
 
@@ -45,6 +49,7 @@ INSERT INTO materias VALUES('4.5',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             20,
+                            6,
                             ARRAY['custo extra'],
                              ARRAY[8, 9, 10, 11]);
 
@@ -55,6 +60,7 @@ INSERT INTO materias VALUES('5',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             6,
+                            2,
                             ARRAY['custo extra'],
                             null);
 
@@ -65,6 +71,7 @@ INSERT INTO materias VALUES('6',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             10,
+                            2,
                             ARRAY['custo extra'],
                             null);
 
@@ -75,6 +82,7 @@ INSERT INTO materias VALUES('7',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             10,
+                            2,
                             ARRAY['custo extra'],
                             null);
 
@@ -85,6 +93,7 @@ INSERT INTO materias VALUES('8',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             10,
+                            2,
                             ARRAY['custo extra'],
                             null);
 
@@ -95,6 +104,7 @@ INSERT INTO materias VALUES('9',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             30,
+                            8,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 
@@ -105,6 +115,7 @@ INSERT INTO materias VALUES('10',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             30,
+                            8,
                             ARRAY['custo extra'],
                             ARRAY[5, 6, 7]);
 
@@ -115,6 +126,7 @@ INSERT INTO materias VALUES('11',
                             ARRAY['17:50'::TIME, '16:40'::TIME],
                             ARRAY['18:50'::TIME, '17:40'::TIME],
                             28,
+                            8,
                             ARRAY['custo extra'],
                             null);
 INSERT INTO materias VALUES('12',
@@ -124,6 +136,7 @@ INSERT INTO materias VALUES('12',
                             ARRAY['17:50'::TIME, '17:50'::TIME],
                             ARRAY['18:50'::TIME, '18:50'::TIME],
                             28,
+                            8,
                             ARRAY['custo extra'],
                             null);
 INSERT INTO materias VALUES('13',
@@ -133,6 +146,7 @@ INSERT INTO materias VALUES('13',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             6,
+                            2,
                             ARRAY['custo extra'],
                             null);
 INSERT INTO materias VALUES('14',
@@ -142,6 +156,7 @@ INSERT INTO materias VALUES('14',
                             ARRAY['16:40'::TIME, '16:40'::TIME],
                             ARRAY['17:40'::TIME, '17:40'::TIME],
                             28,
+                            8,
                             ARRAY['custo extra'],
                             null);
 
@@ -153,8 +168,31 @@ INSERT INTO materias VALUES('15',
                             ARRAY['14:20'::TIME, '16:40'::TIME],
                             ARRAY['15:20'::TIME, '17:40'::TIME],
                             20,
+                            10,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
+
+INSERT INTO materias VALUES('15.5',
+                            'Núcleo Planck de Esportes',
+                            'Volei',
+                            ARRAY[4, 5],
+                            ARRAY['15:30'::TIME, '17:50'::TIME],
+                            ARRAY['16:30'::TIME, '18:50'::TIME],
+                            20,
+                            10,
+                            ARRAY['custo extra'],
+                            ARRAY[5, 6, 7]);
+INSERT INTO materias VALUES('15.7',
+                            'Núcleo Planck de Esportes',
+                            'Handball',
+                            ARRAY[5, 6],
+                            ARRAY['16:40'::TIME, '16:40'::TIME],
+                            ARRAY['17:40'::TIME, '17:40'::TIME],
+                            30,
+                            12,
+                            ARRAY['custo extra'],
+                            ARRAY[5, 6, 7]);
+
 INSERT INTO materias VALUES('16',
                             'Núcleo Planck de Esportes',
                             'Volei',
@@ -162,6 +200,7 @@ INSERT INTO materias VALUES('16',
                             ARRAY['15:30'::TIME, '17:50'::TIME],
                             ARRAY['16:30'::TIME, '18:50'::TIME],
                             20,
+                            10,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('17',
@@ -171,6 +210,7 @@ INSERT INTO materias VALUES('17',
                             ARRAY['16:40'::TIME, '17:50'::TIME],
                             ARRAY['17:40'::TIME, '18:50'::TIME],
                             20,
+                            10,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 
@@ -181,6 +221,7 @@ INSERT INTO materias VALUES('18',
                             ARRAY['17:50'::TIME, '16:40'::TIME],
                             ARRAY['18:50'::TIME, '17:40'::TIME],
                             20,
+                            10,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('19',
@@ -190,6 +231,7 @@ INSERT INTO materias VALUES('19',
                             ARRAY['14:20'::TIME, '14:20'::TIME],
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             20,
+                            10,
                             ARRAY['custo extra'],
                             ARRAY[5,6, 7]);
 
@@ -200,6 +242,7 @@ INSERT INTO materias VALUES('20',
                             ARRAY['15:30'::TIME, '16:40'::TIME],
                             ARRAY['16:30'::TIME, '17:40'::TIME],
                             20,
+                            10,
                             ARRAY['custo extra'],
                             ARRAY[5, 6, 7]);
 INSERT INTO materias VALUES('21',
@@ -209,6 +252,7 @@ INSERT INTO materias VALUES('21',
                             ARRAY['17:50'::TIME, '14:20'::TIME],
                             ARRAY['18:50'::TIME, '15:20'::TIME],
                             30,
+                            12,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 
@@ -219,6 +263,7 @@ INSERT INTO materias VALUES('22',
                             ARRAY['14:20'::TIME, '14:20'::TIME],
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             24,
+                            8,
                             ARRAY['custo extra'],
                             ARRAY[5, 6, 7]);
 
@@ -229,6 +274,7 @@ INSERT INTO materias VALUES('23',
                             ARRAY['14:20'::TIME, '14:20'::TIME],
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             20,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[5, 6, 7]);
 
@@ -239,6 +285,7 @@ INSERT INTO materias VALUES('24',
                             ARRAY['15:30'::TIME, '15:30'::TIME],
                             ARRAY['16:30'::TIME, '16:30'::TIME],
                             20,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('25',
@@ -248,6 +295,7 @@ INSERT INTO materias VALUES('25',
                             ARRAY['17:50'::TIME, '15:30'::TIME],
                             ARRAY['18:50'::TIME, '16:30'::TIME],
                             16,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 INSERT INTO materias VALUES('26',
@@ -257,6 +305,7 @@ INSERT INTO materias VALUES('26',
                             ARRAY['16:40'::TIME, '14:20'::TIME],
                             ARRAY['17:40'::TIME, '15:20'::TIME],
                             16,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[5,6,7]);
 INSERT INTO materias VALUES('27',
@@ -266,6 +315,7 @@ INSERT INTO materias VALUES('27',
                             ARRAY['14:20'::TIME, '14:20'::TIME],
                             ARRAY['15:20'::TIME, '15:20'::TIME],
                             24,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[5,6,7]);
 
@@ -276,6 +326,7 @@ INSERT INTO materias VALUES('28',
                             ARRAY['15:30'::TIME, '15:30'::TIME],
                             ARRAY['16:30'::TIME, '16:30'::TIME],
                             24,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[8, 9, 10, 11]);
 
@@ -287,6 +338,7 @@ INSERT INTO materias VALUES('29',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             null);
 INSERT INTO materias VALUES('30',
@@ -296,6 +348,7 @@ INSERT INTO materias VALUES('30',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             null);
 
@@ -306,6 +359,7 @@ INSERT INTO materias VALUES('31',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             15,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[9, 10, 11]);
 INSERT INTO materias VALUES('32',
@@ -315,6 +369,7 @@ INSERT INTO materias VALUES('32',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             6,
+                            2,
                             ARRAY['custo extra'],
                             null);
 INSERT INTO materias VALUES('33',
@@ -324,6 +379,7 @@ INSERT INTO materias VALUES('33',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             15,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[5, 6]);
 
@@ -334,6 +390,7 @@ INSERT INTO materias VALUES('34',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             15,
+                            6,
                             ARRAY['custo extra'],
                             ARRAY[7, 8]);
 
@@ -344,6 +401,7 @@ INSERT INTO materias VALUES('35',
                             ARRAY['14:20'::TIME],
                             ARRAY['15:20'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[5, 6, 7, 8]);
 
@@ -354,6 +412,7 @@ INSERT INTO materias VALUES('36',
                             ARRAY['15:30'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -364,6 +423,7 @@ INSERT INTO materias VALUES('37',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[5,6,7]);
 
@@ -374,6 +434,7 @@ INSERT INTO materias VALUES('38',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -384,6 +445,7 @@ INSERT INTO materias VALUES('39',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[8, 9,10,11]);
 
@@ -394,6 +456,7 @@ INSERT INTO materias VALUES('41',
                             ARRAY['14:20'::TIME],
                             ARRAY['17:40'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -404,6 +467,7 @@ INSERT INTO materias VALUES('42',
                             ARRAY['14:20'::TIME],
                             ARRAY['17:40'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -414,6 +478,7 @@ INSERT INTO materias VALUES('43',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[8, 9,10,11]);
 
@@ -424,6 +489,7 @@ INSERT INTO materias VALUES('44',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 INSERT INTO materias VALUES('45',
@@ -433,6 +499,7 @@ INSERT INTO materias VALUES('45',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -443,6 +510,7 @@ INSERT INTO materias VALUES('46',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -453,6 +521,7 @@ INSERT INTO materias VALUES('47',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 INSERT INTO materias VALUES('48',
@@ -462,6 +531,7 @@ INSERT INTO materias VALUES('48',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 INSERT INTO materias VALUES('49',
@@ -471,6 +541,7 @@ INSERT INTO materias VALUES('49',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 INSERT INTO materias VALUES('50',
@@ -480,6 +551,7 @@ INSERT INTO materias VALUES('50',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -490,6 +562,7 @@ INSERT INTO materias VALUES('51',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             25,
+                            10,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 
@@ -500,6 +573,7 @@ INSERT INTO materias VALUES('52',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             20,
+                            8,
                             ARRAY['custo extra'],
                             ARRAY[5,6,7,8]);
 INSERT INTO materias VALUES('53',
@@ -509,6 +583,7 @@ INSERT INTO materias VALUES('53',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             20,
+                            8,
                             ARRAY['custo extra'],
                             ARRAY[5,6,7,8]);
 INSERT INTO materias VALUES('54',
@@ -518,6 +593,7 @@ INSERT INTO materias VALUES('54',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             20,
+                            8,
                             ARRAY['custo extra'],
                             ARRAY[5,6,7,8]);
 
@@ -528,6 +604,7 @@ INSERT INTO materias VALUES('55',
                             ARRAY['14:20'::TIME],
                             ARRAY['15:20'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[8, 9]);
 
@@ -538,6 +615,7 @@ INSERT INTO materias VALUES('56',
                             ARRAY['15:30'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[10, 11]);
 
@@ -548,6 +626,7 @@ INSERT INTO materias VALUES('57',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[5, 6]);
 
@@ -558,6 +637,7 @@ INSERT INTO materias VALUES('58',
                             ARRAY['14:20'::TIME],
                             ARRAY['16:30'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[5, 6]);
 INSERT INTO materias VALUES('59',
@@ -567,6 +647,7 @@ INSERT INTO materias VALUES('59',
                             ARRAY['16:40'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[7, 8]);
 INSERT INTO materias VALUES('60',
@@ -576,6 +657,7 @@ INSERT INTO materias VALUES('60',
                             ARRAY['15:30'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 INSERT INTO materias VALUES('61',
@@ -585,6 +667,7 @@ INSERT INTO materias VALUES('61',
                             ARRAY['14:20'::TIME],
                             ARRAY['15:20'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 INSERT INTO materias VALUES('62',
@@ -594,5 +677,6 @@ INSERT INTO materias VALUES('62',
                             ARRAY['17:50'::TIME],
                             ARRAY['18:50'::TIME],
                             100,
+                            0,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
