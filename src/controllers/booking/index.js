@@ -43,7 +43,7 @@ module.exports.export = async function() {
       b._dSubscriptionTime = moment
         .utc(b.timestamp)
         .tz('America/Sao_Paulo')
-        .format('hh:mm')
+        .format('HH:mm')
 
       b._dSubscriptionTimeCalendar = moment
         .utc(b.timestamp)

@@ -23,3 +23,12 @@
  - npm install
  - Ai provavelmente vai dar o erro do python e do node-gyp, ai vai no github deles e segue o processo de instalacao para Windows (opção 1)
  - npm install
+
+
+## Digital Ocean
+
+Up API
+```pm2 start ./src/index.js```
+
+Up Vue app
+```pm2 start npm -- start```
