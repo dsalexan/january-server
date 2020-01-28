@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/dsalexan/january-server#readme",
   "dependencies": {
-    "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -35,6 +34,7 @@
     "morgan": "^1.9.1",
     "nodemailer": "^6.4.2",
     "pg": "^7.17.1",
+    "simplecrypt": "^0.1.0",
     "string-format": "^2.0.0",
     "uuid": "^3.4.0"
   },

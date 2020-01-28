@@ -1,7 +1,10 @@
-const bcrypt = require('bcrypt')
+const simplecrypt = require('simplecrypt')({
+  password: process.env.SECRET
+})
 
 function hashPassword(password) {
-  return bcrypt.hash(password, 10)
+  return simplecrypt.encrypt(password)
+  // return bcrypt.hash(password, 10)
 }
 
 module.exports = {

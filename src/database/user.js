@@ -1,4 +1,6 @@
-const bcrypt = require('bcrypt')
+const simplecrypt = require('simplecrypt')({
+  password: process.env.SECRET
+})
 const { query } = require('./pg')
 const { hashPassword } = require('../utils/crypt')
 
@@ -8,8 +10,9 @@ async function authenticate(email, password) {
   ]))[0]
 
   if (!result) return result
-
-  if (await bcrypt.compare(password, result.password)) {
+  
+  if (password === simplecrypt.decrypt(result.password)) {
+  // if (await bcrypt.compare(password, result.password)) {
     delete result.password
     return result
   } else {
@@ -23,7 +26,8 @@ async function authenticateById(id, password) {
 
   if (!result) return result
 
-  if (await bcrypt.compare(password, result.password)) {
+  if (password === simplecrypt.decrypt(result.password)) {
+  // if (await bcrypt.compare(password, result.password)) {
     delete result.password
     return result
   } else {

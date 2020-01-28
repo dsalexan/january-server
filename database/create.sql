@@ -7,13 +7,13 @@ DROP TABLE IF EXISTS booking;
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
   email VARCHAR(200) NOT NULL,
-  password VARCHAR(200) NOT NULL, /* ENCRYPT */
+  password VARCHAR(500) NOT NULL, /* ENCRYPT */
   name VARCHAR(200) NOT NULL,
   turma INTEGER NOT NULL
 );
 
 /* senha: janeiro */
-INSERT INTO users VALUES('admin', 'admin', '$2b$10$0fZdIcxiq3jRRCT549Jdzupmu3fW7VVqvEa1DE/2J4ic0.7cmYvGq', 'Admin',5);
+INSERT INTO users VALUES('admin', 'admin', '5ae58945f8ade0980e6d7f55da047c9a6d2a89b2a3f64ba741299f076a622c9e2c23f7492b3587f375101fc6cddb8089c8abe2cf9708a2559343af153e9a367fe09875d434107db0b4acccff957c5a67', 'Admin',5);
 
 
 CREATE TABLE materias (
