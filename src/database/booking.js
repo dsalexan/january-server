@@ -22,7 +22,14 @@ async function exists(user, materia) {
 
 
 async function byUser(id) {
-  return await query('SELECT * FROM view_booking WHERE student = $1', [id])
+  let q = `
+    SELECT U.name AS name_student, M.core, M.name AS name_materia, B.*
+    FROM view_booking B
+    LEFT JOIN users U ON B.student = U._id
+    LEFT JOIN materias M ON B.materia = M._id
+    WHERE student = $1
+  `
+  return await query(q, [id])
 }
 
 async function byMateria(id) {

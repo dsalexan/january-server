@@ -2,6 +2,8 @@ const factory = require('./factory')
 
 const {auth} = require('~/controllers')
 const {booking} = require('~/controllers')
+const {database} = require('~/controllers')
+const {users} = require('~/controllers')
 
 module.exports = factory([
   {
@@ -15,6 +17,17 @@ module.exports = factory([
     route: '/',
     controller: () => {},
     admin: true
+  },
+  {
+    method: 'patch',
+    route: '/admin/database/reset',
+    controller: database.reset
+  },
+  {
+    method: 'post',
+    route: '/users/mail',
+    controller: users.mail,
+    admin: true,
   },
   {
     method: 'get',
