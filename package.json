@@ -7,7 +7,8 @@
     "dev": "nodemon --ignore /database --ignore /node_modules ./src/index.js",
     "start": "node ./src/index.js",
     "alias": "link-module-alias",
-    "alias:clear": "link-module-alias clear"
+    "alias:clear": "link-module-alias clear",
+    "up": "pm2 start ./src/index.js"
   },
   "repository": {
     "type": "git",
