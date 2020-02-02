@@ -25,6 +25,7 @@ CREATE TABLE materias (
   endtime TIME[] NOT NULL DEFAULT '{}',
   maximum INTEGER DEFAULT NULL,
   minimum INTEGER DEFAULT NULL,
+  credit INTEGER DEFAULT NULL, 
 
   tags VARCHAR(20)[] NOT NULL DEFAULT '{}',
 
