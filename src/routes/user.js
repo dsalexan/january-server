@@ -24,6 +24,12 @@ module.exports = factory([
     controller: database.reset
   },
   {
+    method: 'get',
+    route: '/users/mail',
+    controller: users.listMails,
+    admin: true,
+  },
+  {
     method: 'post',
     route: '/users/mail',
     controller: users.mail,

@@ -1,8 +1,10 @@
 DROP VIEW IF EXISTS view_booking;
+DROP VIEW IF EXISTS view_email;
 
+DROP TABLE IF EXISTS emails;
+DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS materias;
-DROP TABLE IF EXISTS booking;
 
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -40,6 +42,11 @@ CREATE TABLE booking (
   timestamp TIMESTAMPTZ DEFAULT NULL
 );
 
+CREATE TABLE emails (
+  student VARCHAR(100) NOT NULL,
+  timestamp TIMESTAMPTZ DEFAULT NULL
+);
+
 CREATE OR REPLACE VIEW view_booking AS
 SELECT B.*, M.weekday, M.starttime, M.endtime
 FROM (
@@ -56,3 +63,9 @@ FROM (
     WHERE status != 1
 ) AS B LEFT JOIN
 materias M ON B.materia = M._id;
+
+
+CREATE OR REPLACE VIEW view_email AS
+SELECT E.*, U.name, U.email
+FROM emails AS E
+LEFT JOIN users AS U ON E.student = U._id;

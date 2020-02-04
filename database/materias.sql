@@ -262,7 +262,7 @@ INSERT INTO materias VALUES('22',
                             ARRAY['custo extra'],
                             ARRAY[5, 6, 7]);
 
-INSERT INTO materias VALUES('22',
+INSERT INTO materias VALUES('22.2',
                             'Núcleo Planck de Esportes',
                             'Basquete 3x3',
                             ARRAY[2, 3],
@@ -353,6 +353,7 @@ INSERT INTO materias VALUES('29',
                             ARRAY['16:30'::TIME],
                             28,
                             4,
+                            2,
                             ARRAY[]::VARCHAR(20)[],
                             null);
 INSERT INTO materias VALUES('30',
@@ -363,6 +364,7 @@ INSERT INTO materias VALUES('30',
                             ARRAY['18:50'::TIME],
                             28,
                             4,
+                            2,
                             ARRAY[]::VARCHAR(20)[],
                             null);
 
@@ -613,7 +615,7 @@ INSERT INTO materias VALUES('51',
                             ARRAY['16:30'::TIME],
                             25,
                             8,
-                            2
+                            2,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
 

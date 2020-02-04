@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+require('./utils/string')
+
 // importing the dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
