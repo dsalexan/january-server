@@ -638,7 +638,7 @@ INSERT INTO materias VALUES('49',
                             ARRAY['custo extra'], 
                             ARRAY[9,10,11]);
 
-INSERT INTO materias VALUES('49',
+INSERT INTO materias VALUES('49.1',
                             'Planck Internacional',
                             'Francês',
                             ARRAY[2],
