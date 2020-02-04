@@ -1,10 +1,9 @@
 const _ = require('lodash')
 const { query } = require('./pg')
 
-function all(status) {
+function all() {
   return query('SELECT * FROM view_email')
 }
-
 
 async function byUser(id) {
   return query('SELECT * FROM view_email WHERE student = $1', [id])
@@ -14,7 +13,7 @@ async function byUser(id) {
 // INSERT
 
 async function insert(user, timestamp = new Date()) {
-  return await query('INSERT INTO email (student, timestamp) \
+  return await query('INSERT INTO emails (student, timestamp) \
     VALUES ($1, $2)', [user, timestamp])
 }
 

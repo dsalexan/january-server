@@ -8,6 +8,8 @@ const path = require('path')
 
 const mailService = require('~/services/mail')
 
+const moment = require('moment-timezone')
+
 async function mailOne({user}, u) {
   const [target, bookings] = await Promise.all([Database.user.byId(user), Database.booking.byUser(user)])
 
@@ -20,8 +22,8 @@ async function mailOne({user}, u) {
   })
   text += bookings.map(booking => {
     booking._dWeekday = booking.weekday.toString().toWeekday()
-    booking._dStartTime = booking.starttime.map((time) => this.$moment('2019-01-19 ' + time).format('HH:mm'))
-    booking._dEndTime = booking.endtime.map((time) => this.$moment('2019-01-19 ' + time).format('HH:mm'))
+    booking._dStartTime = booking.starttime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
+    booking._dEndTime = booking.endtime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
     booking._dFullTime = booking.weekday.map((_, i) => `${booking._dWeekday[i]}, ${booking._dStartTime[i]} as ${booking._dEndTime[i]}`).join(' e ')
 
     format(modelBooking, { user: target, booking })

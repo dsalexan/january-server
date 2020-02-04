@@ -18,6 +18,7 @@ module.exports = factory([
     controller: () => {},
     admin: true
   },
+  // HACK: Remove Reset Database
   {
     method: 'patch',
     route: '/admin/database/reset',
