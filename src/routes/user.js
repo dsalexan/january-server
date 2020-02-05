@@ -50,18 +50,18 @@ module.exports = factory([
   },
   {
     method: 'get',
-    route: '/:id',
+    route: '/:user',
     controller: auth.me,
     restricted: true
   },
   {
     method: 'put',
-    route: '/:id',
+    route: '/:user',
     controller: auth.change
   },
   {
     method: 'put',
-    route: '/:id/password',
+    route: '/:user/password',
     controller: auth.changePassword
   },
   {
@@ -83,5 +83,15 @@ module.exports = factory([
     method: 'get',
     route: '/:user/pages',
     controller: booking.pages
+  },
+  {
+    method: 'get',
+    route: '/:user/finished',
+    controller: auth.finished
+  },
+  {
+    method: 'put',
+    route: '/:user/finished',
+    controller: auth.setFinished
   },
 ])

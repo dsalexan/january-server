@@ -5,7 +5,7 @@ const {user} = require('~/database')
 
 // eslint-disable-next-line no-unused-vars
 module.exports.me = async function me(_, u) {
-  const id = _.id === 'me' ? u._id : _.id
+  const id = _.user === 'me' ? u._id : _.user
   const result = await user.byId(id)
 
   if (!result) return {success: false}
@@ -15,6 +15,7 @@ module.exports.me = async function me(_, u) {
   result.pages = [
     {
       route: 'home',
+      finished: false
     },
     {
       route: 'reservas',
@@ -26,7 +27,7 @@ module.exports.me = async function me(_, u) {
       label: 'Painel Administrativo',
       admin: true
     }
-  ].filter(page => !!page.admin === !!isAdmin)
+  ].filter(page => !!page.admin === !!isAdmin).filter(page => page.finished === undefined || page.finished === result.finished)
   result.home = isAdmin ? '/painel' : '/'
 
   return {
@@ -70,8 +71,8 @@ module.exports.register = async function({email, password, name, turma}) {
   }
 }
 
-module.exports.change = async function({email, name, turma, id}, u) {
-  const _id = id === 'me' ? u._id : id
+module.exports.change = async function({email, name, turma, user}, u) {
+  const _id = user === 'me' ? u._id : user
   try {
     const done = await user.update(_id, {email, name, turma})
 
@@ -91,8 +92,8 @@ module.exports.change = async function({email, name, turma, id}, u) {
   }
 }
 
-module.exports.changePassword = async function({id, current_password, new_password}, u) {
-  const _id = id === 'me' ? u._id : id
+module.exports.changePassword = async function({user, current_password, new_password}, u) {
+  const _id = user === 'me' ? u._id : user
   try {
     const matchCurrentPassword = !!(await user.authenticateById(_id, current_password))
 
@@ -113,5 +114,37 @@ module.exports.changePassword = async function({id, current_password, new_passwo
         error: err
       }
     }
+  }
+}
+
+
+module.exports.setFinished = async function(_, u){
+  const id = _.user === 'me' ? u._id : _.user
+  const result = await user.byId(id)
+
+  const newValue = _.value
+
+  if (!result) return {success: false, error: new Error('Unknown user')}
+
+  await user.update(id, {finished: newValue})
+
+  return {
+    success: true,
+    data: {
+      result,
+      finished: newValue
+    }
+  }
+}
+
+module.exports.finished = async function(_, u){
+  const id = _.id === 'me' ? u._id : _.id
+  const result = await user.byId(id)
+
+  if (!result) return {success: false}  
+
+  return {
+    success: true,
+    data: result.finished
   }
 }

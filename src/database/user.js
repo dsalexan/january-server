@@ -57,8 +57,8 @@ async function insert(id, email, password, name, turma) {
 
 // UPDATE
 
-async function update(id, {email, password, name, turma}) {
-  const data = {email, password, name, turma} // too keep other data from being injected
+async function update(id, {email, password, name, turma, finished}) {
+  const data = {email, password, name, turma, finished} // too keep other data from being injected
 
   const fields = await Promise.all(Object.keys(data).filter(k => data[k] !== undefined && data[k] !== null).map(async (k) => {
     if (k === 'password') {
