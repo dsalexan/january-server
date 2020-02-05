@@ -637,7 +637,7 @@ INSERT INTO materias VALUES('49',
                             25,
                             8,
                             2,
-                            ARRAY['custo extra'], 
+                            ARRAY[]::VARCHAR(20)[], 
                             ARRAY[9,10,11]);
 
 INSERT INTO materias VALUES('49.1',
