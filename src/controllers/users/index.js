@@ -34,7 +34,7 @@ async function mailOne({user}, u) {
     const info = await mailService.send({
       from: process.env.MAIL_ADDRESS,
       to: `${target.email}, ${process.env.MAIL_ADDRESS}`,
-      subject: 'Confirmação de Rematrícula - Colégio Planck',
+      subject: 'Atividades Extracurriculares Colégio Planck 2020',
       html: text
     })
     
