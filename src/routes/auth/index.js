@@ -12,5 +12,5 @@ module.exports = factory([
     method: 'post',
     route: '/register',
     controller: auth.register
-  },
+  }
 ])

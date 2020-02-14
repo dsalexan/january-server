@@ -26,6 +26,10 @@ async function mailOne({user}, u) {
     booking._dEndTime = booking.endtime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
     booking._dFullTime = booking.weekday.map((_, i) => `${booking._dWeekday[i]}, ${booking._dStartTime[i]} as ${booking._dEndTime[i]}`).join(' e ')
 
+    booking._dStackPosition = booking.position <= booking.maximum
+      ? `<b style="margin-right: 6px">Inscrito</b>(${booking.position} de ${booking.maximum})`
+      : `<b style="margin-right: 6px">Fila de Espera</b>(${booking.position} de ${booking.maximum})`
+
     format(modelBooking, { user: target, booking })
   }).join('\n')
   text += format(modelFooter, { user: target })
