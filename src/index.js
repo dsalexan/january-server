@@ -32,13 +32,13 @@ app.use(cors())
 app.use(morgan('combined'))
 
 // ROUTES
+app.use(authMiddleware)
+
 app.get('/status', (req, res) => {
   res.send('ONLINE')
 })
 
-app.use('/tutorial', express.static(__dirname + '/src/assets/tutorial.pdf'))
-
-app.use(authMiddleware)
+app.use('/assets', express.static('src/assets'))
 
 app.use('/auth', routes.auth)
 app.use('/materias', routes.materias)

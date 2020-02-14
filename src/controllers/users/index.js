@@ -11,7 +11,7 @@ const mailService = require('~/services/mail')
 const moment = require('moment-timezone')
 
 async function mailOne({user}, u) {
-  const [target, bookings] = await Promise.all([Database.user.byId(user), Database.booking.byUser(user)])
+  const [target, bookings] = await Promise.all([Database.user.byId(user), Database.booking.byUser(user, 1)])
 
   const modelHeader = fs.readFileSync(path.join(__dirname, './header.html')).toString()
   const modelBooking = fs.readFileSync(path.join(__dirname, './booking.html')).toString()
@@ -20,8 +20,9 @@ async function mailOne({user}, u) {
   let text = format(modelHeader, {
     user: target
   })
+
   text += bookings.map(booking => {
-    booking._dWeekday = booking.weekday.toString().toWeekday()
+    booking._dWeekday = booking.weekday.map(day => day.toString().toWeekday())
     booking._dStartTime = booking.starttime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
     booking._dEndTime = booking.endtime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
     booking._dFullTime = booking.weekday.map((_, i) => `${booking._dWeekday[i]}, ${booking._dStartTime[i]} as ${booking._dEndTime[i]}`).join(' e ')
@@ -30,7 +31,7 @@ async function mailOne({user}, u) {
       ? `<b style="margin-right: 6px">Inscrito</b>(${booking.position} de ${booking.maximum})`
       : `<b style="margin-right: 6px">Fila de Espera</b>(${booking.position} de ${booking.maximum})`
 
-    format(modelBooking, { user: target, booking })
+    return format(modelBooking, { user: target, booking })
   }).join('\n')
   text += format(modelFooter, { user: target })
 

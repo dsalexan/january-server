@@ -21,15 +21,16 @@ async function exists(user, materia) {
 }
 
 
-async function byUser(id) {
+async function byUser(id, status) {
   let q = `
-    SELECT U.name AS name_student, U.turma, M.core, M.name AS name_materia, B.*
+    SELECT U.name AS name_student, U.turma, M.core, M.name AS name_materia, M.maximum, B.*
     FROM view_booking B
     LEFT JOIN users U ON B.student = U._id
     LEFT JOIN materias M ON B.materia = M._id
     WHERE student = $1
+    ${status !== undefined ? ' AND status = $2' : ''}
   `
-  return await query(q, [id])
+  return await query(q, status !== undefined ? [id, status] : [id])
 }
 
 async function byMateria(id) {
