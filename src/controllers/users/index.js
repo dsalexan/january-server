@@ -25,7 +25,7 @@ async function mailOne({user}, u) {
     booking._dWeekday = booking.weekday.map(day => day.toString().toWeekday())
     booking._dStartTime = booking.starttime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
     booking._dEndTime = booking.endtime.map((time) => moment('2019-01-19 ' + time).format('HH:mm'))
-    booking._dFullTime = booking.weekday.map((_, i) => `${booking._dWeekday[i]}, ${booking._dStartTime[i]} as ${booking._dEndTime[i]}`).join(' e ')
+    booking._dFullTime = booking.weekday.map((_, i) => `${booking._dWeekday[i]}, ${booking._dStartTime[i]} até ${booking._dEndTime[i]}`).join(' e ')
 
     booking._dStackPosition = booking.position <= booking.maximum
       ? `<b style="margin-right: 6px">Inscrito</b>(${booking.position} de ${booking.maximum})`
@@ -39,7 +39,7 @@ async function mailOne({user}, u) {
     const info = await mailService.send({
       from: process.env.MAIL_ADDRESS,
       to: `${target.email}, ${process.env.MAIL_ADDRESS}`,
-      subject: 'Atividades Extracurriculares Colégio Planck 2020',
+      subject: 'Confirmação -  Atividades Extracurriculares 2020',
       html: text
     })
     
