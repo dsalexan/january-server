@@ -442,16 +442,16 @@ INSERT INTO materias VALUES('4.5',
 
 INSERT INTO materias VALUES('33',
                             'Núcleo Planck de Tecnologia',
-                            'Programação 6-7',
+                            'Programação',
                             ARRAY[2],
                             ARRAY['14:20'::TIME],
-                            ARRAY['16:30'::TIME],
+                            ARRAY['16:00'::TIME],
                             15,
                             6,
-                            0,
+                            4,
                             2,
                             ARRAY['custo extra'],
-                            ARRAY[5, 6]);
+                            ARRAY[5, 6, 7, 8]);
 
 INSERT INTO materias VALUES('37',
                             'Núcleo Planck de Tecnologia',
