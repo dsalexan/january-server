@@ -383,7 +383,7 @@ INSERT INTO materias VALUES('30',
                             ARRAY['18:50'::TIME],
                             28,
                             4,
-                            9
+                            9,
                             2,
                             ARRAY[]::VARCHAR(20)[],
                             null);
@@ -448,6 +448,7 @@ INSERT INTO materias VALUES('33',
                             ARRAY['16:30'::TIME],
                             15,
                             6,
+                            0,
                             2,
                             ARRAY['custo extra'],
                             ARRAY[5, 6]);
