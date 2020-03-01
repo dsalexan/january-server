@@ -18,16 +18,16 @@ async function bookingsById(id) {
 
 // INSERT
 
-async function insert(id, core, name, weekday, starttime, endtime, maximum = null, minimum = null, credit = 1, tags = [], turmas = []) {
-  return await query('INSERT INTO materias (_id, core, name, weekday, starttime, endtime, maximum, minimum, credit, tags, turmas) \
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [id, core, name, weekday, starttime, endtime, maximum, minimum, credit, tags, turmas])
+async function insert(id, core, name, weekday, starttime, endtime, maximum = null, minimum = null, inscritos = 0, credit = 1, tags = [], turmas = []) {
+  return await query('INSERT INTO materias (_id, core, name, weekday, starttime, endtime, maximum, minimum, inscritos, credit, tags, turmas) \
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)', [id, core, name, weekday, starttime, endtime, maximum, minimum, inscritos, credit, tags, turmas])
 }
 
 
 // UPDATE
 
-async function update(id, {core, name, weekday, starttime, endtime, maximum, minimum, credit, tags = [], turmas = []}) {
-  const data = {core, name, weekday, starttime, endtime, maximum, minimum, credit, tags, turmas} // too keep other data from being injected
+async function update(id, {core, name, weekday, starttime, endtime, maximum, minimum, inscritos, credit, tags = [], turmas = []}) {
+  const data = {core, name, weekday, starttime, endtime, maximum, minimum, inscritos, credit, tags, turmas} // too keep other data from being injected
 
   const fields = await Promise.all(Object.keys(data).filter(k => data[k] !== undefined && data[k] !== null))
   const setFields = Object.keys(data).filter(k => data[k]  !== undefined && data[k] !== null).map((k, i) => `${k} = $${i + 2}`).join(',')

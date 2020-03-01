@@ -19,9 +19,9 @@ module.exports.listAll = async function listAll(_, u) {
   }
 }
 
-module.exports.insert = async function insert({core, name, weekday, starttime, endtime, maximum = null, minimum = null, credit = 1, tags = [], turmas = []} = {}) {
+module.exports.insert = async function insert({core, name, weekday, starttime, endtime, maximum = null, minimum = null, inscritos = 0, credit = 1, tags = [], turmas = []} = {}) {
   const id  = uuid()
-  const done = await materias.insert(id, core, name, weekday, starttime, endtime, maximum, minimum, credit, tags, turmas)
+  const done = await materias.insert(id, core, name, weekday, starttime, endtime, maximum, minimum, inscritos, credit, tags, turmas)
 
   if (!done) return {success: false}
   return {

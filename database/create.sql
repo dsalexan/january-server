@@ -50,7 +50,7 @@ CREATE TABLE emails (
 );
 
 CREATE OR REPLACE VIEW view_booking AS
-SELECT B.*, M.weekday, M.starttime, M.endtime
+SELECT B.student, B.materia, B.status, B.timestamp, CASE WHEN B.position IS NULL THEN NULL ELSE B.position + M.inscritos AS position, M.weekday, M.starttime, M.endtime
 FROM (
   WITH stack AS (
     SELECT *, ROW_NUMBER() OVER(PARTITION BY  materia ORDER BY timestamp ASC) AS position
