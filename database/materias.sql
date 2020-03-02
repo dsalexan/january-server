@@ -623,6 +623,19 @@ INSERT INTO materias VALUES('49',
                             ARRAY[]::VARCHAR(20)[], 
                             ARRAY[9,10,11]);
 
+INSERT INTO materias VALUES('49',
+                            'Planck Internacional',
+                            'Francês-I B - EM',
+                            ARRAY[3],
+                            ARRAY['16:40'::TIME],
+                            ARRAY['18:50'::TIME],
+                            25,
+                            8,
+                            9,
+                            2,
+                            ARRAY[]::VARCHAR(20)[], 
+                            ARRAY[9,10,11]);
+
 INSERT INTO materias VALUES('49.1',
                             'Planck Internacional',
                             'Francês 6-9',
