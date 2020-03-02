@@ -448,7 +448,7 @@ INSERT INTO materias VALUES('33',
                             ARRAY['16:00'::TIME],
                             15,
                             6,
-                            4,
+                            5,
                             2,
                             ARRAY['custo extra'],
                             ARRAY[5, 6, 7, 8]);
