@@ -451,7 +451,11 @@ INSERT INTO materias VALUES('33',
                             5,
                             2,
                             ARRAY['custo extra'],
+<<<<<<< HEAD
                             ARRAY[5, 6,7,8]);
+=======
+                            ARRAY[5, 6, 7, 8]);
+>>>>>>> fa8f1f7209c9890e18ae767d44f684e2be7c93c8
 
 INSERT INTO materias VALUES('37',
                             'Núcleo Planck de Tecnologia',
