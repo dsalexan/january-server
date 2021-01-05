@@ -7,8 +7,8 @@ async function reset() {
   const create = fs.readFileSync(path.join(__dirname, '../../database/create.sql')).toString()
   await query(create)
 
-  const materias = fs.readFileSync(path.join(__dirname, '../../database/materias.sql')).toString()
-  await query(materias)
+  const load = fs.readFileSync(path.join(__dirname, '../../db/load.sql')).toString()
+  await query(load)
 
   return true
 }

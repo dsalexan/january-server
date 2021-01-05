@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+
+  backend:
+    container_name: extracurriculares_backend
+    build: .
+    ports:
+      - ${PORT}:8080
+    environment:
+      - HOST="0.0.0.0"
+      - PORT=${PORT}
+      - SECRET=${SECRET}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - MAIL_ADDRESS=${MAIL_ADDRESS}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
+    networks:
+      - extracurriculares
+
+  postgres:
+    container_name: extracurriculares_postgres
+    image: postgres:alpine
+    environment:
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./db/create.sql:/docker-entrypoint-initdb.d/2-create.sql
+      - ./db/load.sql:/docker-entrypoint-initdb.d/3-load.sql
+    ports:
+      - ${POSTGRES_PORT}:5432
+    networks:
+      - extracurriculares
+
+networks:
+  extracurriculares:
+    driver: bridge

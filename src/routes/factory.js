@@ -1,4 +1,4 @@
-const {request, restricted, admin} = require('~/utils/route')
+const {request, restricted, admin} = require('../utils/route')
 
 module.exports = function factory(routes) {
   const router = require('express').Router()

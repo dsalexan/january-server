@@ -1,6 +1,6 @@
 const factory = require('./factory')
 
-const {materias} = require('~/controllers')
+const {materias} = require('../controllers')
 
 module.exports = factory([
   {

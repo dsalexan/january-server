@@ -1,6 +1,6 @@
 const factory = require('../factory')
 
-const {auth} = require('~/controllers')
+const {auth} = require('../../controllers')
 
 module.exports = factory([
   {

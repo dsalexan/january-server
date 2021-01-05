@@ -4,11 +4,14 @@
   "description": "Project January - REST Server",
   "main": "src/index.js",
   "scripts": {
-    "dev": "nodemon --ignore /database --ignore /node_modules ./src/index.js",
+    "dev": "nodemon -r dotenv/config --ignore /database --ignore /node_modules ./src/index.js",
     "start": "node ./src/index.js",
     "alias": "link-module-alias",
     "alias:clear": "link-module-alias clear",
-    "up": "pm2 start ./src/index.js"
+    "up": "pm2 start ./src/index.js",
+    "docker": "docker-compose --env-file ./.env up",
+    "docker:d": "docker-compose --env-file ./.env up -d",
+    "docker:build": "docker-compose --env-file ./.env up -d --build"
   },
   "repository": {
     "type": "git",

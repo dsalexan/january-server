@@ -1,7 +1,7 @@
 const uuid = require('uuid/v4')
 const jwt = require('jsonwebtoken')
 
-const {user} = require('~/database')
+const {user} = require('../../database')
 
 // eslint-disable-next-line no-unused-vars
 module.exports.me = async function me(_, u) {

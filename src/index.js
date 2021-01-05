@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 require('./utils/string')
 
 // importing the dependencies
@@ -31,12 +29,12 @@ app.use(cors())
 // adding morgan to log HTTP requests
 app.use(morgan('combined'))
 
+app.get('/', (req, res) => {
+  res.send('OK')
+})
+
 // ROUTES
 app.use(authMiddleware)
-
-app.get('/status', (req, res) => {
-  res.send('ONLINE')
-})
 
 app.use('/assets', express.static('src/assets'))
 

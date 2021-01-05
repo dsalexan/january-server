@@ -1,9 +1,9 @@
 const factory = require('./factory')
 
-const {auth} = require('~/controllers')
-const {booking} = require('~/controllers')
-const {database} = require('~/controllers')
-const {users} = require('~/controllers')
+const {auth} = require('../controllers')
+const {booking} = require('../controllers')
+const {database} = require('../controllers')
+const {users} = require('../controllers')
 
 module.exports = factory([
   {

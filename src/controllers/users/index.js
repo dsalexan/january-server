@@ -1,12 +1,12 @@
 const nodemailer = require('nodemailer')
 
-const Database = require('~/database')
+const Database = require('../../database')
 const _ = require('lodash')
 const format = require('string-format')
 const fs = require('fs')
 const path = require('path')
 
-const mailService = require('~/services/mail')
+const mailService = require('../../services/mail')
 
 const moment = require('moment-timezone')
 

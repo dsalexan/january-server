@@ -4,7 +4,7 @@ const materias = require('./materias')
 const booking = require('./booking')
 const users = require('./users')
 
-const {database} = require('~/database')
+const {database} = require('../database')
 
 module.exports = {
   auth,

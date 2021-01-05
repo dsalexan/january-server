@@ -1,6 +1,6 @@
 const uuid = require('uuid/v4')
 
-const {materias} = require('~/database')
+const {materias} = require('../../database')
 
 module.exports.listAll = async function listAll(_, u) {
   const result = await materias.all()

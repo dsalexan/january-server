@@ -2,10 +2,10 @@ const uuid = require('uuid/v4')
 const moment = require('moment-timezone')
 
 
-const {booking} = require('~/database')
-const {materias} = require('~/database')
+const {booking} = require('../../database')
+const {materias} = require('../../database')
 
-const userDB = require('~/database').user
+const userDB = require('../../database').user
 
 module.exports.listAll = async function(_, u) {
   const result = await booking.all(1)
