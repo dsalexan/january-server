@@ -13,7 +13,8 @@
     "docker:d": "docker-compose --env-file ./.env up -d",
     "docker:build": "docker-compose --env-file ./.env up -d --build",
     "image": "docker build -t gcr.io/mvp-eplanck/extracurriculares-back:latest .",
-    "deploy": "docker push gcr.io/mvp-eplanck/extracurriculares-back:latest"
+    "deploy": "docker push gcr.io/mvp-eplanck/extracurriculares-back:latest",
+    "rollout": "kubectl rollout restart deployment extracurriculares-back"
   },
   "repository": {
     "type": "git",
