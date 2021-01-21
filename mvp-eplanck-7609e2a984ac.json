@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "mvp-eplanck",
+  "private_key_id": "7609e2a984ac124c5c84c9040e59103da911b6ee",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCobXS2nrnwwpPa\nX2/4qkn+iZ1JARKamzZir15rwxxLCpKHFDWMMIawAlw132YUrdFaP5HC0z8kkf/O\n7SX5DY1bUS4ZleXauqkb0Dqy/RiiK/PVvyEX46ColxNmp/Ykh3I6YcMYOV7BD5by\nHXdch2W+ONjMhDmwhH/hmoRSvCB58eofOF2mfcuoFcyU8zjv00aY+Rm30CDtq1KA\nDj1BrbH+xtlWRkwimWuPRdwJhHza005G0vda9KjcMSvZziLG2ujyj2HspT3Dqoku\nffKWNYR0WM4PpGHMFHHjC6gH8aq0z9Ce/EjlLPoZJz1Lt49lhDlIZPceo01jZoEW\nMWRlzF2xAgMBAAECggEABkU37YYUglL+Jei8bo+pbE9jgoimkIizgkJI475qbt1E\nhgChuzfBxer6k5te7alodEGOW8hZTxNb6JBh4+cmInaP3q461dUx70oF62y6hmwY\nOnaQhPcJn8krFNzvMB42SZfi52OYZFvgGOCxtUlJp4auhJOuIaUXLTcfUsSz+VIx\nuNpHWz1yG8hKKAAHuP4xU/X2kqF93JTOUg0zAYCwChsORhi1MFs+n43+pJMtHddU\nxSfbwd5ahumJM48AzmWq9fhRWzbjzTOALsiN3/sFKjvCr3Th5vdAFLrNLkRceXD0\n/4RlB3H3zes19V0cd8BpPR++RF9DADKs+crjton1+QKBgQDRN6r2J3ClSbtb+MqN\nmtjcDRvWgSyFvwm3A2CpF3tO95ALs95gC2YBeT/lnnWqsVghORMLmm5IObX6inlT\nSLf6BQPWxTsU/bLYPE5ugGbDuABbkGxSHAKqSXhJK8A2r67IoKpVLgUmVNMwYq3m\nVyasFg1Hy7TspGtdExeXR9sz2QKBgQDOFtVYwKmRNYkfxoPnLNqXOkTYO/Gu37YX\nQlargJFdRBX87P7MYkfPntgaenK6L2oxZXPBcbCHPq3pQcZTWkFgQchP/KVLiGKY\nFrakBIGbFLmdZqWM8WGidYigE3GuKxee5vkJpewWJJFWrUAUshkXDJkka2Nu7ZMh\nVwOpbJ3JmQKBgDPSTxVjlYJLbg4M5NcIWNjAonmSS13hgN2FB6c6er+HkHVlmxo9\nGIoa51nP0yNxg/vOsEn6eYCIUuv46q5XX8KdBWNoPQcpA+iNn3u9cDbgV65Wao44\nA+z7/8BYBudEws1NBoPMv1fMQPdGKf7Y7WpImAeFjI3k9/b46Kn/EWuZAoGASBjG\n1EC6UXloGjypgmM3qXYSBY+a8jGDE0n65g6ZTAZ4pr4GOVwcgS6xrTmvDyFtRhCW\n2VK7jeTIlHSVPC2z90esGwdokC8LRueTR3foG2e5s63oNpFvNZVmkZGb0HF01vs4\nnj50hB6Q1cDQTS0tB9o5bPtAktr8AMrfFhNQc+kCgYASEwBUIAowiSKoI3aQU5g0\nMbzKHnvJcISzbeqQqbzkMwywU82iJQha+f+W07ehgqi/WpsLdXEMQCOuAVC9nohw\nIhmK6QedKx7N4M5VA0ztIDME6tRwCs84fTffd1Rg1n/vlA46JRZY7s15ihCsdxHb\nxbPaw4tUUbE7SP9Pr/EbRg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "extracurriculares-db-464@mvp-eplanck.iam.gserviceaccount.com",
+  "client_id": "112611432723629769768",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/extracurriculares-db-464%40mvp-eplanck.iam.gserviceaccount.com"
+}

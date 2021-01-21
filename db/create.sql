@@ -1,4 +1,4 @@
-CREATE DATABASE extracurriculares;
+--CREATE DATABASE extracurriculares;
 
 DROP VIEW IF EXISTS view_booking;
 DROP VIEW IF EXISTS view_email;

@@ -1,0 +1,87 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "extracurriculares-back"
+  namespace: "default"
+  labels:
+    app: "extracurriculares-back"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: "extracurriculares-back"
+  template:
+    metadata:
+      labels:
+        app: "extracurriculares-back"
+    spec:
+      containers:
+      - name: "extracurriculares-back-1"
+        image: "gcr.io/mvp-eplanck/extracurriculares-back:latest"
+        env:
+        - name: "PORT"
+          valueFrom:
+            configMapKeyRef:
+              key: "PORT"
+              name: "extracurriculares-back-config-svso"
+        - name: "SECRET"
+          valueFrom:
+            configMapKeyRef:
+              key: "SECRET"
+              name: "extracurriculares-back-config-svso"
+        - name: "MAIL_ADDRESS"
+          valueFrom:
+            configMapKeyRef:
+              key: "MAIL_ADDRESS"
+              name: "extracurriculares-back-config-svso"
+        - name: "MAIL_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              key: "MAIL_PASSWORD"
+              name: "extracurriculares-back-config-svso"
+        - name: "POSTGRES_USER"
+          valueFrom:
+            configMapKeyRef:
+              name: "extracurriculares-back-config-svso"
+              key: "POSTGRES_USER"
+        - name: "POSTGRES_PASSWORD"
+          valueFrom:
+            configMapKeyRef:
+              name: "extracurriculares-back-config-svso"
+              key: "POSTGRES_PASSWORD"
+        - name: "POSTGRES_DB"
+          valueFrom:
+            configMapKeyRef:
+              name: "extracurriculares-back-config-svso"
+              key: "POSTGRES_DB"
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.16
+        command: ["/cloud_sql_proxy", "-instances=mvp-eplanck:us-central1:extracurriculares-db=tcp:5432", "-credential_file=/secrets/cloudsql/instance_credientials.json"]
+        volumeMounts:
+          - name: my-secrets-volume
+            mountPath: /secrets/cloudsql
+            readOnly: true
+      volumes:
+      - name: my-secrets-volume
+        secret:
+          secretName: instance-credentials
+---
+apiVersion: "autoscaling/v2beta1"
+kind: "HorizontalPodAutoscaler"
+metadata:
+  name: "extracurriculares-back-hpa-7vzn"
+  namespace: "default"
+  labels:
+    app: "extracurriculares-back"
+spec:
+  scaleTargetRef:
+    kind: "Deployment"
+    name: "extracurriculares-back"
+    apiVersion: "apps/v1"
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: "Resource"
+    resource:
+      name: "cpu"
+      targetAverageUtilization: 80

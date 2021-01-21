@@ -1,5 +1,8 @@
 require('./utils/string')
 
+
+const { get, isNil } = require('lodash')
+
 // importing the dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -10,6 +13,7 @@ const morgan = require('morgan')
 const { authMiddleware } = require('./utils/route')
 const routes = require('./routes')
 const database = require('./database/pg')
+
 
 const debug = require('./utils/debug')
 
@@ -29,8 +33,14 @@ app.use(cors())
 // adding morgan to log HTTP requests
 app.use(morgan('combined'))
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
   res.send('OK')
+})
+
+app.get('/health-check', async (req, res) => {
+  database.pg().query('SELECT NOW()', (err, response) => {
+    res.send(!isNil(get(response, 'rows.0.now', null)) ? 'ONLINE' : 'OFFLINE')
+  })
 })
 
 // ROUTES

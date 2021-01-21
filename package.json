@@ -11,7 +11,9 @@
     "up": "pm2 start ./src/index.js",
     "docker": "docker-compose --env-file ./.env up",
     "docker:d": "docker-compose --env-file ./.env up -d",
-    "docker:build": "docker-compose --env-file ./.env up -d --build"
+    "docker:build": "docker-compose --env-file ./.env up -d --build",
+    "image": "docker build -t gcr.io/mvp-eplanck/extracurriculares-back:latest .",
+    "deploy": "docker push gcr.io/mvp-eplanck/extracurriculares-back:latest"
   },
   "repository": {
     "type": "git",
@@ -32,12 +34,12 @@
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
     "jwks-rsa": "^1.6.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.20",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
     "morgan": "^1.9.1",
     "nodemailer": "^6.4.2",
-    "pg": "^7.17.1",
+    "pg": "^8.5.1",
     "simplecrypt": "^0.1.0",
     "string-format": "^2.0.0",
     "uuid": "^3.4.0"

@@ -2,20 +2,20 @@ const debug = require('../utils/debug')
 
 const log = debug.extend('pg')
 
-const Pool = require('pg').Pool
+const { Pool } = require('pg')
 
 function start() {
-  log('Opening connection pool to Postgres database')
   const pool = new Pool({
-    user: process.env.POSTGRES_USER,
     host: process.env.POSTGRES_HOST,
-    database: process.env.POSTGRES_DB,
-    password: process.env.POSTGRES_PASSWORD,
     port: process.env.POSTGRES_PORT,
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
   })
 
   global.pool = pool
 
+  log('Opening connection pool to Postgres database')
   return global.pool
 }
 
