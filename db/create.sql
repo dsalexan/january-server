@@ -5,20 +5,26 @@ DROP VIEW IF EXISTS view_email;
 
 DROP TABLE IF EXISTS emails;
 DROP TABLE IF EXISTS booking;
+DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS materias;
 
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
   email VARCHAR(200) NOT NULL,
-  password VARCHAR(500) NOT NULL, /* ENCRYPT */
-  name VARCHAR(200) NOT NULL,
+  student VARCHAR(200) NOT NULL,
   turma INTEGER NOT NULL,
   finished BOOLEAN DEFAULT FALSE
 );
 
+CREATE TABLE roles(
+  email VARCHAR(200) NOT NULL UNIQUE,
+  roles VARCHAR(500) NOT NULL DEFAULT ''
+);
+
 /* senha: janeiro */
-INSERT INTO users VALUES('admin', 'admin', '5ae58945f8ade0980e6d7f55da047c9a6d2a89b2a3f64ba741299f076a622c9e2c23f7492b3587f375101fc6cddb8089c8abe2cf9708a2559343af153e9a367fe09875d434107db0b4acccff957c5a67', 'Admin',5, FALSE);
+INSERT INTO roles VALUES('danilo.salexan@gmail.com', 'admin');
+INSERT INTO roles VALUES('tarcisio.rodrigues@gmail.com', 'admin');
 
 
 CREATE TABLE materias (
@@ -47,7 +53,7 @@ CREATE TABLE booking (
 );
 
 CREATE TABLE emails (
-  student VARCHAR(100) NOT NULL,
+  "user" VARCHAR(100) NOT NULL,
   timestamp TIMESTAMPTZ DEFAULT NULL
 );
 
@@ -70,6 +76,6 @@ materias M ON B.materia = M._id;
 
 
 CREATE OR REPLACE VIEW view_email AS
-SELECT E.*, U.name, U.email
+SELECT E.*, U.student, U.email
 FROM emails AS E
-LEFT JOIN users AS U ON E.student = U._id;
+LEFT JOIN users AS U ON E."user" = U._id;

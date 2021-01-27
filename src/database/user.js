@@ -49,16 +49,16 @@ async function byEmail(email) {
 
 // INSERT
 
-async function insert(id, email, password, name, turma) {
-  return await query('INSERT INTO users (_id, email, password, name, turma) \
-    VALUES ($1, $2, $3, $4, $5)', [id, email, await hashPassword(password), name, turma])
+async function insert(id, email, student, turma) {
+  return await query('INSERT INTO users (_id, email, student, turma) \
+    VALUES ($1, $2, $3, $4)', [id, email, student, turma])
 }
 
 
 // UPDATE
 
-async function update(id, {email, password, name, turma, finished}) {
-  const data = {email, password, name, turma, finished} // too keep other data from being injected
+async function update(id, {email, student, turma, finished}) {
+  const data = {email, student, turma, finished} // too keep other data from being injected
 
   const fields = await Promise.all(Object.keys(data).filter(k => data[k] !== undefined && data[k] !== null).map(async (k) => {
     if (k === 'password') {

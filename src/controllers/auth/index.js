@@ -1,16 +1,32 @@
 const uuid = require('uuid/v4')
 const jwt = require('jsonwebtoken')
 
-const {user} = require('../../database')
+const {pick, get} = require('lodash')
+
+const {user, roles} = require('../../database')
+
+const {OAuth2Client} = require('google-auth-library')
 
 // eslint-disable-next-line no-unused-vars
-module.exports.me = async function me(_, u) {
-  const id = _.user === 'me' ? u._id : _.user
+module.exports.me = async function me(params, u) {
+  const id = params.user === 'me' ? u._id : params.user
   const result = await user.byId(id)
 
   if (!result) return {success: false}
 
-  const isAdmin = id === 'admin'
+  if (params.user === 'me' && u.google) {
+    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+    const ticket = await client.verifyIdToken({
+      idToken: u.google,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    })
+
+    const payload = ticket.getPayload()
+    console.log('GOOOGLE PLAYLOAD', payload)
+  }
+
+  const role = get(await roles.byEmail(result.email), 'roles', '').split(',')
+  const isAdmin = role.includes('admin')
 
   result.pages = [
     {
@@ -36,26 +52,62 @@ module.exports.me = async function me(_, u) {
   }
 }
 
-module.exports.signin = async function({email, password}) {
-  const authed = await user.authenticate(email, password)
+module.exports.signin = async function({email, password, token: googleToken}) {
+  if (googleToken) {
+    const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
+    const ticket = await client.verifyIdToken({
+      idToken: googleToken,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    })
+    const payload = ticket.getPayload()
 
-  if (!authed) return {
-    status: 401,
-    data: {
-      success: false,
-      error: 'Credenciais Incorretas'
+    let authed = await user.byEmail(payload.email)
+
+
+    if (!authed) {
+      // criar usuário no banco se não existe
+      const id = uuid()
+      await user.insert(id, payload.email, null, null)
+      authed = {
+        _id: id
+      }
     }
-  }
 
-  const token = jwt.sign({_id: authed._id}, process.env.SECRET, {
-    expiresIn: 86400 // expires in 24 hours
-  })
+    // TODO: procurar no banco por esse usuário, e o estudante vinculado à ele
+    
+    const token = jwt.sign({...pick(authed, '_id'), google: googleToken}, process.env.SECRET, {
+      expiresIn: 4 * 60 * 60 // expires in 4 hours
+    })
   
 
-  return {
-    success: true,
-    data: {
-      token,
+    return {
+      success: true,
+      data: {
+        token,
+      }
+    }
+  }
+  else {
+    const authed = await user.authenticate(email, password)
+
+    if (!authed) return {
+      status: 401,
+      data: {
+        success: false,
+        error: 'Credenciais Incorretas'
+      }
+    }
+
+    const token = jwt.sign({...pick(authed, '_id')}, process.env.SECRET, {
+      expiresIn: 86400 // expires in 24 hours
+    })
+  
+
+    return {
+      success: true,
+      data: {
+        token,
+      }
     }
   }
 }
