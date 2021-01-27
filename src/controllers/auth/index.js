@@ -22,7 +22,8 @@ module.exports.me = async function me(params, u) {
     })
 
     const payload = ticket.getPayload()
-    console.log('GOOOGLE PLAYLOAD', payload)
+
+    result.name = get(payload, 'name', 'Convidado')
   }
 
   const role = get(await roles.byEmail(result.email), 'roles', '').split(',')

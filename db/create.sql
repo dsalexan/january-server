@@ -12,8 +12,8 @@ DROP TABLE IF EXISTS materias;
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
   email VARCHAR(200) NOT NULL,
-  student VARCHAR(200) NOT NULL,
-  turma INTEGER NOT NULL,
+  parent VARCHAR(200),
+  turma INTEGER,
   finished BOOLEAN DEFAULT FALSE
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE roles(
 
 /* senha: janeiro */
 INSERT INTO roles VALUES('danilo.salexan@gmail.com', 'admin');
-INSERT INTO roles VALUES('tarcisio.rodrigues@gmail.com', 'admin');
+INSERT INTO roles VALUES('tarcisio.rodrigues@professor.colegioplanck.com.br', 'admin');
 
 
 CREATE TABLE materias (
