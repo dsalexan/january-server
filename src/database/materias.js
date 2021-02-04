@@ -9,7 +9,7 @@ async function byId(id) {
 }
 
 async function byCore(core) {
-  return (await query('SELECT * FROM users WHERE core = $1', [core]))
+  return (await query('SELECT * FROM students WHERE core = $1', [core]))
 }
 
 async function bookingsById(id) {

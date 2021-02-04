@@ -3,9 +3,9 @@ const { query } = require('./pg')
 
 function all(status) {
   let q = `
-    SELECT U.name AS name_student, B.student, U.turma, M.core, M.name AS name_materia, B.materia, B.position, M.maximum, M.inscritos, B.timestamp
+    SELECT U.name AS name_student, B.student, U.turma, M._id AS id_materia, M.core, M.name AS name_materia, B.materia, B.position, M.maximum, M.inscritos, B.timestamp
     FROM view_booking B
-    LEFT JOIN users U ON B.student = U._id
+    LEFT JOIN students U ON B.student = U._id
     LEFT JOIN materias M ON B.materia = M._id
   `
 
@@ -25,7 +25,7 @@ async function byUser(id, status) {
   let q = `
     SELECT U.name AS name_student, U.turma, M.core, M.name AS name_materia, M.maximum, B.*
     FROM view_booking B
-    LEFT JOIN users U ON B.student = U._id
+    LEFT JOIN students U ON B.student = U._id
     LEFT JOIN materias M ON B.materia = M._id
     WHERE student = $1
     ${status !== undefined ? ' AND status = $2' : ''}

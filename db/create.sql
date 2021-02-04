@@ -3,11 +3,22 @@
 DROP VIEW IF EXISTS view_booking;
 DROP VIEW IF EXISTS view_email;
 
+DROP TABLE IF EXISTS students;
 DROP TABLE IF EXISTS emails;
 DROP TABLE IF EXISTS booking;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS materias;
+
+CREATE TABLE students(
+  _id VARCHAR(100) NOT NULL PRIMARY KEY,
+  email VARCHAR(200) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  parent VARCHAR(200) NOT NULL,
+  parent2 VARCHAR(200),
+  turma INTEGER,
+  finished BOOLEAN DEFAULT FALSE
+);
 
 CREATE TABLE users(
   _id VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -53,6 +64,7 @@ CREATE TABLE booking (
 );
 
 CREATE TABLE emails (
+  id SERIAL PRIMARY KEY,
   "user" VARCHAR(100) NOT NULL,
   timestamp TIMESTAMPTZ DEFAULT NULL
 );
@@ -76,6 +88,6 @@ materias M ON B.materia = M._id;
 
 
 CREATE OR REPLACE VIEW view_email AS
-SELECT E.*, U.student, U.email
+SELECT E.*, S.name, S.email, S.parent
 FROM emails AS E
-LEFT JOIN users AS U ON E."user" = U._id;
+LEFT JOIN students AS S ON E."user" = S._id;

@@ -1,16 +1,32 @@
 const uuid = require('uuid/v4')
 const jwt = require('jsonwebtoken')
 
-const {pick, get} = require('lodash')
+const {pick, get, isNil} = require('lodash')
 
-const {user, roles} = require('../../database')
+const {roles, student} = require('../../database')
 
 const {OAuth2Client} = require('google-auth-library')
 
 // eslint-disable-next-line no-unused-vars
 module.exports.me = async function me(params, u) {
-  const id = params.user === 'me' ? u._id : params.user
-  const result = await user.byId(id)
+  let result
+
+  if (params.user === 'me') {
+    const children = await student.byParent(u.email)
+    
+    result = {
+      email: get(children, '0.parent'),
+      students: children
+    }
+  } else {
+    const student = await student.byId(params.user)
+
+    result = {
+      name: get(student, 'name'),
+      email: get(student, 'email'),
+      students: [student]
+    }
+  }
 
   if (!result) return {success: false}
 
@@ -26,8 +42,11 @@ module.exports.me = async function me(params, u) {
     result.name = get(payload, 'name', 'Convidado')
   }
 
+  if (isNil(result.name)) result.name = 'Tarcisio Rodrigues'
+
   const role = get(await roles.byEmail(result.email), 'roles', '').split(',')
-  const isAdmin = role.includes('admin')
+  const isAdmin = false && role.includes('admin') // TODO: remover o false para o prod, isso é pra teste de 28/01
+  result.finished = false // TODO: tb remover depois do teste
 
   result.pages = [
     {
@@ -44,7 +63,7 @@ module.exports.me = async function me(params, u) {
       label: 'Painel Administrativo',
       admin: true
     }
-  ].filter(page => !!page.admin === !!isAdmin).filter(page => page.finished === undefined || page.finished === result.finished)
+  ]//.filter(page => !!page.admin === !!isAdmin).filter(page => page.finished === undefined || page.finished === result.finished)
   result.home = isAdmin ? '/painel' : '/'
 
   return {
@@ -89,26 +108,22 @@ module.exports.signin = async function({email, password, token: googleToken}) {
     }
   }
   else {
-    const authed = await user.authenticate(email, password)
+    const authed = (await student.byParent(email))[0]
 
     if (!authed) return {
       status: 401,
       data: {
-        success: false,
         error: 'Credenciais Incorretas'
       }
     }
 
-    const token = jwt.sign({...pick(authed, '_id')}, process.env.SECRET, {
+    const token = jwt.sign({email}, process.env.SECRET, {
       expiresIn: 86400 // expires in 24 hours
     })
   
 
     return {
-      success: true,
-      data: {
-        token,
-      }
+      token,
     }
   }
 }

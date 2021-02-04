@@ -10,12 +10,9 @@ const userDB = require('../../database').user
 module.exports.listAll = async function(_, u) {
   const result = await booking.all(1)
 
-  if (!result) return {success: false}
+  if (!result) return {status: 500}
 
-  return {
-    success: true,
-    data: result
-  }
+  return result
 }
 
 module.exports.user = async function({user}, u) {
@@ -23,12 +20,9 @@ module.exports.user = async function({user}, u) {
 
   const result = await booking.byUser(id)
 
-  if (!result) return {success: false}
+  if (!result) return {status: 500}
 
-  return {
-    success: true,
-    data: result
-  }
+  return result
 }
 
 module.exports.export = async function() {
@@ -79,7 +73,6 @@ module.exports.add = async function({user, materia, status = 0, timestamp = null
   if (m.turmas !== null && !(m.turmas.includes(u.turma))) return {
     status: 401,
     data: {
-      success: false,
       error: 'Você não pertence às turmas permitidas para essa atividade'
     }
   }
@@ -95,11 +88,10 @@ module.exports.add = async function({user, materia, status = 0, timestamp = null
     done = await booking.update(id, materia, {status, timestamp})
   }
 
-  if (!done) return {success: false}
+  if (!done) return {status: 500}
   return {
-    success: true,
-    data: {
-      id, materia, status, timestamp
+    status: 200,
+    data: {student: id, materia, status, timestamp    
     }
   }
 }
@@ -109,11 +101,8 @@ module.exports.remove = async function({user, materia} = {}, u) {
 
   const done = await booking.remove(id, materia)
 
-  if (!done) return {success: false}
+  if (!done) return {status: 500}
   return {
-    success: true,
-    data: {
-      id, materia
-    }
+    id, materia    
   }
 }

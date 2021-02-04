@@ -85,10 +85,7 @@ async function listMails(_, u) {
   try {
     const results = await Database.emails.all()
 
-    return {
-      success: true,
-      data: results
-    }
+    return results
   }catch(err) {
     return {
       status: 500,

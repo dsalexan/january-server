@@ -5,7 +5,7 @@ const { query } = require('./pg')
 const { hashPassword } = require('../utils/crypt')
 
 async function authenticate(email, password) {
-  const result = (await query('SELECT * FROM users WHERE email = $1', [
+  const result = (await query('SELECT * FROM students WHERE email = $1', [
     email
   ]))[0]
 
@@ -20,7 +20,7 @@ async function authenticate(email, password) {
   }
 }
 async function authenticateById(id, password) {
-  const result = (await query('SELECT * FROM users WHERE _id = $1', [
+  const result = (await query('SELECT * FROM students WHERE _id = $1', [
     id
   ]))[0]
 
@@ -36,13 +36,13 @@ async function authenticateById(id, password) {
 }
 
 async function byId(id) {
-  const user = (await query('SELECT * FROM users WHERE _id = $1', [id]))[0]
+  const user = (await query('SELECT * FROM students WHERE _id = $1', [id]))[0]
   if (user) delete user.password
   return user
 }
 
 async function byEmail(email) {
-  const user = (await query('SELECT * FROM users WHERE email = $1', [email]))[0]
+  const user = (await query('SELECT * FROM students WHERE email = $1', [email]))[0]
   if (user) delete user.password
   return user
 }

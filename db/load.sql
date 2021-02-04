@@ -1,3 +1,34 @@
+
+/*
+  STUDENTS
+*/
+
+
+INSERT INTO students VALUES(
+                            '7ca0274b-9f32-4e00-be03-5e0e4a26808f',
+                            'student.1@aluno.colegioplanck.com.br',
+                            'Aluno 1',
+                            'tarcisio.rodrigues@professor.colegioplanck.com.br',
+                            NULL,
+                            7,
+                            FALSE
+                           );
+
+INSERT INTO students VALUES(
+                            '2f8c1a6d-802a-4dc7-8970-136093d177bc',
+                            'student.2@aluno.colegioplanck.com.br',
+                            'Aluno 2',
+                            'tarcisio.rodrigues@professor.colegioplanck.com.br',
+                            NULL,
+                            10,
+                            FALSE
+                           );
+
+/*
+  MATERIAS
+*/
+
+
 INSERT INTO materias VALUES('1',
                             'Núcleo Planck de Artes',
                             'Escultura 6-3',
