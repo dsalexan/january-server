@@ -482,6 +482,7 @@ INSERT INTO materias VALUES('37',
                             ARRAY['custo extra'],
                              ARRAY[8, 9, 10, 11]);
 
+
 INSERT INTO materias VALUES('38',
                             'Planck Internacional',
                             'PEC - A2 - EM',
@@ -494,6 +495,7 @@ INSERT INTO materias VALUES('38',
                             3,
                             ARRAY[]::VARCHAR(20)[],
                             ARRAY[9,10,11]);
+
 
 INSERT INTO materias VALUES('39',
                             'Planck Internacional',
@@ -549,7 +551,7 @@ INSERT INTO materias VALUES('42',
 
 INSERT INTO materias VALUES('43',
                             'Planck Internacional',
-                            'PEC - C1 - EM',
+                            'PEC - C1+ - EM',
                             ARRAY[4],
                             ARRAY['14:20'::TIME],
                             ARRAY['17:10'::TIME],
@@ -589,7 +591,7 @@ INSERT INTO materias VALUES('45',
 
 INSERT INTO materias VALUES('46',
                             'Planck Internacional',
-                            'Espanhol - B2 - EF',
+                            'Espanhol - A2+ - EF',
                             ARRAY[2],
                             ARRAY['16:40'::TIME],
                             ARRAY['18:20'::TIME],
@@ -599,6 +601,7 @@ INSERT INTO materias VALUES('46',
                             2,
                             ARRAY['custo extra'],
                             ARRAY[5,6,7,8]);
+
 
 INSERT INTO materias VALUES('47',
                             'Planck Internacional',
@@ -628,7 +631,7 @@ INSERT INTO materias VALUES('48',
 
 INSERT INTO materias VALUES('49',
                             'Planck Internacional',
-                            'Francês - A1+ - EM',
+                            'Francês - A1 - EM',
                             ARRAY[3],
                             ARRAY['14:20'::TIME],
                             ARRAY['17:10'::TIME],
