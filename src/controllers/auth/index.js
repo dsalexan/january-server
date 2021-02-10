@@ -1,9 +1,9 @@
 const uuid = require('uuid/v4')
 const jwt = require('jsonwebtoken')
 
-const {pick, get, isNil} = require('lodash')
+const {pick, get, isNil, omit, split} = require('lodash')
 
-const {roles, student} = require('../../database')
+const {roles, student: Student} = require('../../database')
 
 const {OAuth2Client} = require('google-auth-library')
 
@@ -12,14 +12,14 @@ module.exports.me = async function me(params, u) {
   let result
 
   if (params.user === 'me') {
-    const children = await student.byParent(u.email)
+    const children = await Student.byParent(u.email)
     
     result = {
       email: get(children, '0.parent'),
       students: children
     }
   } else {
-    const student = await student.byId(params.user)
+    const student = await Student.byId(params.user)
 
     result = {
       name: get(student, 'name'),
@@ -73,42 +73,55 @@ module.exports.me = async function me(params, u) {
 }
 
 module.exports.signin = async function({email, password, token: googleToken}) {
-  if (googleToken) {
+  if (googleToken) {    
+    const decoded = jwt.verify(googleToken, Buffer.from(process.env.JWT_SECRET, 'base64'), {
+      algorithm: 'HS256',
+    })
+    
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
     const ticket = await client.verifyIdToken({
-      idToken: googleToken,
+      idToken: get(decoded, 'google.id_token'),
       audience: process.env.GOOGLE_CLIENT_ID,
     })
     const payload = ticket.getPayload()
 
-    let authed = await user.byEmail(payload.email)
+    let authedStudent = await Student.byEmail(payload.email)
+    let authedParent = await Student.byParent(payload.email)
+    let authedRoles = await roles.byEmail(payload.email)
 
+    const authed = authedParent || authedStudent || authedRoles
 
-    if (!authed) {
-      // criar usuário no banco se não existe
-      const id = uuid()
-      await user.insert(id, payload.email, null, null)
-      authed = {
-        _id: id
+    if (!authed) return {
+      status: 401,
+      data: {
+        error: 'Credenciais Incorretas'
       }
     }
 
-    // TODO: procurar no banco por esse usuário, e o estudante vinculado à ele
-    
-    const token = jwt.sign({...pick(authed, '_id'), google: googleToken}, process.env.SECRET, {
+    const isParent = !authedStudent
+    const user = {
+      google: pick(googleToken, ['id_token']),
+      //
+      _id: get(authedStudent, '_id', null),
+      name: get(authedStudent, 'name', payload.name),
+      email: payload.email,
+      roles: [...get(authedRoles, 'roles', '').split(','), ...[isParent ? 'responsavel' : 'aluno']].filter(role => role !== ''),
+      students: [
+        ...(!isParent ? [authedStudent] : authedParent)
+      ].map(student => omit(student, ['parent', 'parent2']))
+    }
+
+    const token = jwt.sign(user, process.env.SECRET, {
       expiresIn: 4 * 60 * 60 // expires in 4 hours
     })
   
-
     return {
-      success: true,
-      data: {
-        token,
-      }
+      token,
+      user
     }
   }
   else {
-    const authed = (await student.byParent(email))[0]
+    const authed = (await Student.byParent(email))[0]
 
     if (!authed) return {
       status: 401,
@@ -129,13 +142,8 @@ module.exports.signin = async function({email, password, token: googleToken}) {
 }
 
 module.exports.register = async function({email, password, name, turma}) {
-  const id  = uuid()
-  const done = await user.insert(id, email, password, name, turma)
-
-  if (!done) return {success: false}
   return {
     success: true,
-    data: id
   }
 }
 
@@ -188,13 +196,13 @@ module.exports.changePassword = async function({user, current_password, new_pass
 
 module.exports.setFinished = async function(_, u){
   const id = _.user === 'me' ? u._id : _.user
-  const result = await user.byId(id)
+  const result = await Student.byId(id)
 
   const newValue = _.value
 
   if (!result) return {success: false, error: new Error('Unknown user')}
 
-  await user.update(id, {finished: newValue})
+  await Student.update(id, {finished: newValue})
 
   return {
     success: true,
@@ -207,7 +215,7 @@ module.exports.setFinished = async function(_, u){
 
 module.exports.finished = async function(_, u){
   const id = _.id === 'me' ? u._id : _.id
-  const result = await user.byId(id)
+  const result = await Student.byId(id)
 
   if (!result) return {success: false}  
 

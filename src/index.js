@@ -1,7 +1,6 @@
 require('./utils/string')
 
-
-const { get, isNil } = require('lodash')
+const {pick, get, isNil, omit, split} = require('lodash')
 
 // importing the dependencies
 const express = require('express')
@@ -14,14 +13,21 @@ const { authMiddleware } = require('./utils/route')
 const routes = require('./routes')
 const database = require('./database/pg')
 
-
 const debug = require('./utils/debug')
+
+
+const jwt = require('jsonwebtoken')
+
+const {roles, student: Student} = require('./database')
+
+const {OAuth2Client} = require('google-auth-library')
+
 
 // defining the Express app
 const app = express()
 
 // adding Helmet to enhance your API's security
-app.use(helmet())
+// app.use(helmet())
 
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.urlencoded({ extended: true }))

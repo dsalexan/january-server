@@ -14,7 +14,8 @@
     "docker:build": "docker-compose --env-file ./.env up -d --build",
     "image:build": "docker build -t gcr.io/eletivas-planck/extracurriculares-back:latest .",
     "image:push": "docker push gcr.io/eletivas-planck/extracurriculares-back:latest",
-    "deploy:rollout": "kubectl rollout restart deployment extracurriculares-back"
+    "deploy:rollout": "kubectl rollout restart deployment extracurriculares-back",
+    "deploy": "gcloud builds submit --project \"eletivas-planck\" --config=./cloud.yaml"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,7 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "debug": "^4.1.1",
+    "debug": "^4.3.1",
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "google-auth-library": "^6.1.4",
