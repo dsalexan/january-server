@@ -4,6 +4,9 @@ const moment = require('moment-timezone')
 const {materias, booking} = require('../../database')
 const {CustomError} = require('../../utils/error')
 
+const _ = require('lodash')
+const { get } = require('lodash')
+
 module.exports.listAll = async function listAll(_, u) {
   const result = await materias.all()
 
@@ -33,21 +36,16 @@ module.exports.export = async function() {
 
   if (!materias || !bookings) return {success: false}
 
+  const bookingsByMaterias = _(bookings || [])
+    .groupBy('id_materia')
+    .value()
+
   const data = [
-    ['ID Estudante', 'Estudante', 'Núcleo', 'Atividade', 'Posição na Fila', 'Horário Inscrição'],
-    ...bookings.map((b) => {
-      b._dPosition = `${b.position} de ${b.maximum}`
-      b._dSubscriptionTime = moment
-        .utc(b.timestamp)
-        .tz('America/Sao_Paulo')
-        .format('HH:mm')
+    ['ID Atividade', 'Atividade', 'Núcleo', 'Mínimo', 'Máximo', 'Inscritos'],
+    ...materias.map((materia) => {
+      const bookings = get(bookingsByMaterias, get(materia, '_id'), [])
 
-      b._dSubscriptionTimeCalendar = moment
-        .utc(b.timestamp)
-        .tz('America/Sao_Paulo')
-        .fromNow()
-
-      return [b.student, b.name_student, b.core, b.name_materia, b._dPosition, b._dSubscriptionTime]
+      return [get(materia, 'id'), get(materia, 'name'), get(materia, 'core'), get(materia, 'minimum'), get(materia, 'maximum'), parseInt(get(materia, 'inscritos')) + bookings.length]
     })
   ]
 

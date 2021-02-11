@@ -85,7 +85,7 @@ module.exports.signin = async function({email, password, token: googleToken}) {
     })
     const payload = ticket.getPayload()
 
-    let authedStudent = await Student.byEmail(payload.email)
+    let authedStudent = false && await Student.byEmail(payload.email) // SOMENTE RESPONSAVEIS FAZEM MATRICULA
     let authedParent = await Student.byParent(payload.email)
     let authedRoles = await roles.byEmail(payload.email)
 

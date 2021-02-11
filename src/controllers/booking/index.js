@@ -31,7 +31,7 @@ module.exports.export = async function() {
   if (!result) return {success: false}
 
   const data = [
-    ['ID Estudante', 'Estudante', 'Núcleo', 'Atividade', 'Posição na Fila', 'Horário Inscrição'],
+    ['ID Atividade', 'ID Estudante', 'Estudante', 'Núcleo', 'Atividade', 'Posição na Fila', 'Horário Inscrição'],
     ...result.map((b) => {
       b._dPosition = `${b.position} de ${b.maximum}`
       b._dSubscriptionTime = moment
@@ -44,7 +44,7 @@ module.exports.export = async function() {
         .tz('America/Sao_Paulo')
         .fromNow()
 
-      return [b.student, b.name_student, b.core, b.name_materia, b._dPosition, b._dSubscriptionTime]
+      return [b.id_materia, b.student, b.name_student, b.core, b.name_materia, b._dPosition, b._dSubscriptionTime]
     })
   ]
 
