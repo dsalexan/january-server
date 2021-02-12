@@ -35,12 +35,13 @@ module.exports.request = function request(controller) {
 }
 
 module.exports.authMiddleware = function authMiddleware(req, res, next) {
-  const authorization = req.headers['Authorization'] || req.query['Authorization']
+  const authorization = get(req, 'headers.Authorization', get(req, 'query.Authorization', ''))
   const token = authorization.replace('Bearer ', '')
 
-  console.log('TOKENAUTH MIDDLEWARE', token)
-
-  if (!token) return next()
+  if (!token || token === '') {
+    req.user = null
+    return next()
+  }
 
   jwt.verify(token, Buffer.from(process.env.JWT_SECRET, 'base64'), {algorithm: 'HS256'}, function(err, decoded) {
     if (err) {
@@ -49,7 +50,7 @@ module.exports.authMiddleware = function authMiddleware(req, res, next) {
     }
     
     req.user = decoded
-    req.admin = get(decoded, 'roles', []).includes('administrador')
+    req.admin = get(decoded, 'roles', []).includes('administracao')
     next()
   })
 }
