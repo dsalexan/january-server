@@ -35,37 +35,38 @@ module.exports.request = function request(controller) {
 }
 
 module.exports.authMiddleware = function authMiddleware(req, res, next) {
-  const authorization = get(req, 'headers.Authorization', get(req, 'query.Authorization', ''))
-  const token = authorization.replace('Bearer ', '')
+  try {
+    const authorization = req.get('authorization') || get(req, 'query.Authorization', get(req, 'query.authorization', ''))
+    const token = authorization.replace('Bearer ', '')
 
-  if (!token || token === '') {
-    req.user = null
-    return next()
-  }
-
-  jwt.verify(token, Buffer.from(process.env.JWT_SECRET, 'base64'), {algorithm: 'HS256'}, function(err, decoded) {
-    if (err) {
+    if (!token || token === '') {
       req.user = null
       return next()
     }
-    
-    req.user = decoded
-    req.admin = get(decoded, 'roles', []).includes('administracao')
+
+    const user = jwt.verify(token, Buffer.from(process.env.JWT_SECRET, 'base64'), {algorithm: 'HS256'})
+  
+    req.user = user
+    req.admin = get(user, 'roles', []).includes('administracao')
     next()
-  })
+  } catch(err) {
+    console.log('AUTH MIDDLEWARE - ERROR', err)
+    req.user = null
+    next()
+  }
 }
 
 module.exports.restricted = function restricted(req, res, next) {
-  if (req.user === undefined) return res.status(401).send({ success: false, message: 'No token provided.' })
-  else if (req.user === null) return res.status(500).send({ success: false, message: 'Failed to authenticate token.' })
+  if (req.user === undefined) return res.status(400).send({ success: false, message: 'No token provided.' })
+  else if (req.user === null) return res.status(403).send({ success: false, message: 'Failed to authenticate token.' })
   else {
     next()
   }
 }
 
 module.exports.admin = function admin(req, res, next) {  
-  if (req.user === undefined) return res.status(401).send({ success: false, message: 'No token provided.' })
-  else if (req.user === null) return res.status(500).send({ success: false, message: 'Failed to authenticate token.' })
+  if (req.user === undefined) return res.status(400).send({ success: false, message: 'No token provided.' })
+  else if (req.user === null) return res.status(403).send({ success: false, message: 'Failed to authenticate token.' })
   else if (!req.admin) return res.status(401).send({ success: false, message: 'Unauthorized resource' })
   else {
     next()

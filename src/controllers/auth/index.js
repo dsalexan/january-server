@@ -100,7 +100,7 @@ module.exports.signin = async function({email, password, token: googleToken}) {
 
     const isParent = !authedStudent
     const user = {
-      google: pick(googleToken, ['id_token']),
+      google: get(decoded, 'google.id_token'),
       //
       _id: get(authedStudent, '_id', null),
       name: get(authedStudent, 'name', payload.name),
@@ -111,8 +111,9 @@ module.exports.signin = async function({email, password, token: googleToken}) {
       ].map(student => omit(student, ['parent', 'parent2']))
     }
 
-    const token = jwt.sign(user, process.env.SECRET, {
-      expiresIn: 4 * 60 * 60 // expires in 4 hours
+    const token = jwt.sign(user, Buffer.from(process.env.JWT_SECRET, 'base64'), {
+      algorithm: 'HS256',
+      expiresIn: '24h',
     })
   
     return {
@@ -195,7 +196,7 @@ module.exports.changePassword = async function({user, current_password, new_pass
 
 
 module.exports.setFinished = async function(_, u){
-  const id = _.user === 'me' ? u._id : _.user
+  const id = _.user
   const result = await Student.byId(id)
 
   const newValue = _.value
