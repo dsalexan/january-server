@@ -1,3 +1,4 @@
+const { isNil, flatten } = require('lodash')
 const _ = require('lodash')
 const { query } = require('./pg')
 
@@ -9,11 +10,12 @@ function all(status) {
     LEFT JOIN materias M ON B.materia = M._id
   `
 
-  if (status !== undefined) {
-    q += ' WHERE B.status = $1'
+  if (!isNil(status)) {
+    q += ' WHERE '
+    q += flatten([status]).map((status, index) => ' B.status = $' + (index + 1) + ' ').join(' OR ')
   }
 
-  return query(q, [status])
+  return query(q, flatten([status]))
 }
 
 async function exists(user, materia) {

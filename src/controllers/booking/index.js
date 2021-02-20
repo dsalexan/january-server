@@ -8,8 +8,8 @@ const {materias} = require('../../database')
 const userDB = require('../../database').user
 
 module.exports.listAll = async function(_, u) {
-  const result = await booking.all(1)
-
+  const result = await booking.all([1, 2])
+  
   if (!result) return {status: 500}
 
   return result
@@ -26,14 +26,15 @@ module.exports.user = async function({user}, u) {
 }
 
 module.exports.export = async function() {
-  const result = await booking.all(1)
+  const result = await booking.all([1, 2])
 
   if (!result) return {success: false}
 
   const data = [
-    ['ID Atividade', 'ID Estudante', 'Estudante', 'Núcleo', 'Atividade', 'Posição na Fila', 'Horário Inscrição'],
+    ['ID Atividade', 'ID Estudante', 'Estudante', 'Núcleo', 'Atividade', 'Posição na Fila', 'Máximo', 'Data Inscrição'],
     ...result.map((b) => {
       b._dPosition = `${b.position} de ${b.maximum}`
+      b._dSubscription = moment.utc(b.timestamp).tz('America/Sao_Paulo').format('DD/MM/YYYY HH:mm')
       b._dSubscriptionTime = moment
         .utc(b.timestamp)
         .tz('America/Sao_Paulo')
@@ -44,7 +45,7 @@ module.exports.export = async function() {
         .tz('America/Sao_Paulo')
         .fromNow()
 
-      return [b.id_materia, b.student, b.name_student, b.core, b.name_materia, b._dPosition, b._dSubscriptionTime]
+      return [b.id_materia, b.student, b.name_student, b.core, b.name_materia, b.position, b.maximum, b._dSubscription]
     })
   ]
 
@@ -59,7 +60,7 @@ module.exports.export = async function() {
   return {
     status: 200,
     contentType: 'text/csv',
-    contentDisposition: `attachment; filename=painel_export_${name}.csv`,
+    contentDisposition: `attachment; filename=painel_reservas_export_${name}.csv`,
     end: csv
   }
 }

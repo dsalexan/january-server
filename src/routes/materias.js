@@ -15,4 +15,10 @@ module.exports = factory([
     controller: materias.insert,
     admin: true
   },
+  {
+    method: 'get',
+    route: '/export',
+    controller: materias.export,
+    admin: true
+  },
 ])

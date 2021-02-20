@@ -1,7 +1,7 @@
 const uuid = require('uuid/v4')
 const jwt = require('jsonwebtoken')
 
-const {pick, get, isNil, omit, split} = require('lodash')
+const {pick, get, isNil, omit, split, pullAll} = require('lodash')
 
 const {roles, student: Student} = require('../../database')
 
@@ -79,15 +79,38 @@ module.exports.signin = async function({email, password, token: googleToken}) {
     })
     
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID)
-    const ticket = await client.verifyIdToken({
-      idToken: get(decoded, 'google.id_token'),
-      audience: process.env.GOOGLE_CLIENT_ID,
-    })
-    const payload = ticket.getPayload()
+    
+    let _email, _name
 
-    let authedStudent = false && await Student.byEmail(payload.email) // SOMENTE RESPONSAVEIS FAZEM MATRICULA
-    let authedParent = await Student.byParent(payload.email)
-    let authedRoles = await roles.byEmail(payload.email)
+    try {
+      const ticket = await client.verifyIdToken({
+        idToken: get(decoded, 'google.id_token'),
+        audience: process.env.GOOGLE_CLIENT_ID,
+      })
+      const payload = ticket.getPayload()
+
+      _email = payload.email
+      _name = payload.name
+    }catch(error) {
+      if (error.message.includes('Token used too late')) {
+        const _string = error.message.match(/{([^}]+)}/)
+        try {
+          const _data = JSON.parse(_string[0])
+          _email = _data.email
+          _name = _data.name
+        }catch(err) {
+          console.log('ERRO AO PEGAR DATA FROM Token used too late')
+          throw err
+        }
+      }
+      else {
+        throw error
+      }
+    }
+
+    let authedStudent = false && await Student.byEmail(_email) // SOMENTE RESPONSAVEIS FAZEM MATRICULA
+    let authedParent = await Student.byParent(_email)
+    let authedRoles = await roles.byEmail(_email)
 
     const authed = authedParent || authedStudent || authedRoles
 
@@ -98,13 +121,17 @@ module.exports.signin = async function({email, password, token: googleToken}) {
       }
     }
 
+    if (get(authedParent, 'length', 0) === 0)  {
+      console.error('STUDENTLESS PARENT', _email, get(authedRoles, 'roles', '—'))
+    }
+
     const isParent = !authedStudent
     const user = {
       google: get(decoded, 'google.id_token'),
       //
       _id: get(authedStudent, '_id', null),
-      name: get(authedStudent, 'name', payload.name),
-      email: payload.email,
+      name: get(authedStudent, 'name', _name),
+      email: _email,
       roles: [...get(authedRoles, 'roles', '').split(','), ...[isParent ? 'responsavel' : 'aluno']].filter(role => role !== ''),
       students: [
         ...(!isParent ? [authedStudent] : authedParent)
@@ -215,7 +242,7 @@ module.exports.setFinished = async function(_, u){
 }
 
 module.exports.finished = async function(_, u){
-  const id = _.id === 'me' ? u._id : _.id
+  const id = _.user === 'me' ? u._user : _.user
   const result = await Student.byId(id)
 
   if (!result) return {success: false}  

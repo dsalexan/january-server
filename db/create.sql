@@ -78,11 +78,11 @@ FROM (
   )
     SELECT s.*
     FROM stack s
-    WHERE status = 1
+    WHERE status IN (1, 2)
   UNION
     SELECT *, null as position
     FROM booking
-    WHERE status != 1
+    WHERE status = 0
 ) AS B LEFT JOIN
 materias M ON B.materia = M._id;
 

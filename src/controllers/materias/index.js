@@ -31,21 +31,30 @@ module.exports.insert = async function insert(params = {}) {
 }
 
 module.exports.export = async function() {
-  const materias = await materias.all()
-  const bookings = await booking.all(1)
+  const allMaterias = await materias.all()
+  const bookings = await booking.all([1, 2])
 
-  if (!materias || !bookings) return {success: false}
+  if (!allMaterias || !bookings) return {success: false}
 
   const bookingsByMaterias = _(bookings || [])
     .groupBy('id_materia')
     .value()
 
   const data = [
-    ['ID Atividade', 'Atividade', 'Núcleo', 'Mínimo', 'Máximo', 'Inscritos'],
-    ...materias.map((materia) => {
+    ['ID Atividade', 'Atividade', 'Núcleo', 'Mínimo', 'Máximo', 'Inscritos', 'Dia da Semana', 'Inicio', 'Termino'],
+    ...allMaterias.map((materia) => {
       const bookings = get(bookingsByMaterias, get(materia, '_id'), [])
 
-      return [get(materia, 'id'), get(materia, 'name'), get(materia, 'core'), get(materia, 'minimum'), get(materia, 'maximum'), parseInt(get(materia, 'inscritos')) + bookings.length]
+      return [get(materia, 'id'), 
+        get(materia, 'name'), 
+        get(materia, 'core'), 
+        get(materia, 'minimum'), 
+        get(materia, 'maximum'), 
+        parseInt(get(materia, 'inscritos')) + bookings.length, 
+        get(materia, 'weekday', []).map(weekday => ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'][weekday]).join('/'),
+        get(materia, 'starttime', []).join('/'),
+        get(materia, 'endtime', []).join('/')
+      ]
     })
   ]
 
@@ -60,7 +69,7 @@ module.exports.export = async function() {
   return {
     status: 200,
     contentType: 'text/csv',
-    contentDisposition: `attachment; filename=painel_export_${name}.csv`,
+    contentDisposition: `attachment; filename=painel_materias_export_${name}.csv`,
     end: csv
   }
 }
